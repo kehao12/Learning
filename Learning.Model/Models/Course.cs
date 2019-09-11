@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Learning.Model.Models
 {
     [Table("Courses")]
-    class Course: Auditable
+    public class Course: Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

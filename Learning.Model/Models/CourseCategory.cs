@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Learning.Model.Models
 {
     [Table("CourseCategories")]
-    class CourseCategory: Auditable
+    public class CourseCategory: Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

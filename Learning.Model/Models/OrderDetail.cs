@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Learning.Model.Models
 {
     [Table("OrderDetails")]
-    class OrderDetail
+    public class OrderDetail
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
