@@ -15,5 +15,6 @@ namespace Learning.Model.Abstract
         public DateTime? UpdatedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public string UpdatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool Status { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

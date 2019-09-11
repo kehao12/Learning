@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learning.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Learning.Model.Models
 {
     [Table("CourseCategories")]
-    class CourseCategory
+    class CourseCategory: Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
