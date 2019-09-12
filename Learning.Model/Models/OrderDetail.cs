@@ -14,9 +14,14 @@ namespace Learning.Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+
         public int  CourseID { get; set; }
         [ForeignKey("CourseID")]
         public virtual Course Course { get; set; }
+
+        public int OrderID { get; set; }
+        [ForeignKey("OrderID")]
+        public virtual Order Order { get; set; }
 
     }
 }
