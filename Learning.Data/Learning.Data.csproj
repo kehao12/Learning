@@ -61,10 +61,15 @@
     <Compile Include="Migrations\201909120416266_InitialDB.Designer.cs">
       <DependentUpon>201909120416266_InitialDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909120806333_AddErrorTable.cs" />
+    <Compile Include="Migrations\201909120806333_AddErrorTable.Designer.cs">
+      <DependentUpon>201909120806333_AddErrorTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CourseCategoryRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
   </ItemGroup>
@@ -85,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909120416266_InitialDB.resx">
       <DependentUpon>201909120416266_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909120806333_AddErrorTable.resx">
+      <DependentUpon>201909120806333_AddErrorTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -54,6 +54,7 @@
     <Compile Include="Models\CourseCategory.cs" />
     <Compile Include="Models\CourseStudent.cs" />
     <Compile Include="Models\CourseTag.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
