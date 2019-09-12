@@ -48,6 +48,29 @@ namespace Learning.Data.Migrations
                 .Index(t => t.CategoryID);
             
             CreateTable(
+                "dbo.CourseTags",
+                c => new
+                    {
+                        CourseID = c.Int(nullable: false),
+                        TagID = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => new { t.CourseID, t.TagID })
+                .ForeignKey("dbo.Courses", t => t.CourseID, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.TagID, cascadeDelete: true)
+                .Index(t => t.CourseID)
+                .Index(t => t.TagID);
+            
+            CreateTable(
+                "dbo.Tags",
+                c => new
+                    {
+                        ID = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Type = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.Lessons",
                 c => new
                     {
@@ -125,6 +148,7 @@ namespace Learning.Data.Migrations
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256, unicode: false),
                         CategoryID = c.Int(nullable: false),
+                        TagID = c.Int(nullable: false),
                         Image = c.String(maxLength: 256),
                         Description = c.String(maxLength: 500),
                         Content = c.String(),
@@ -138,6 +162,19 @@ namespace Learning.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.PostTags",
+                c => new
+                    {
+                        PostID = c.Int(nullable: false),
+                        TagID = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => new { t.PostID, t.TagID })
+                .ForeignKey("dbo.Posts", t => t.PostID, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.TagID, cascadeDelete: true)
+                .Index(t => t.PostID)
+                .Index(t => t.TagID);
+            
+            CreateTable(
                 "dbo.Slides",
                 c => new
                     {
@@ -148,16 +185,6 @@ namespace Learning.Data.Migrations
                         Url = c.String(maxLength: 256),
                         DisplayOrder = c.Int(),
                         Status = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Tags",
-                c => new
-                    {
-                        ID = c.String(nullable: false, maxLength: 50),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Type = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -175,20 +202,30 @@ namespace Learning.Data.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.PostTags", "TagID", "dbo.Tags");
+            DropForeignKey("dbo.PostTags", "PostID", "dbo.Posts");
             DropForeignKey("dbo.OrderDetails", "OrderID", "dbo.Orders");
             DropForeignKey("dbo.OrderDetails", "CourseID", "dbo.Courses");
+            DropForeignKey("dbo.CourseTags", "TagID", "dbo.Tags");
+            DropForeignKey("dbo.CourseTags", "CourseID", "dbo.Courses");
             DropForeignKey("dbo.Courses", "CategoryID", "dbo.CourseCategories");
+            DropIndex("dbo.PostTags", new[] { "TagID" });
+            DropIndex("dbo.PostTags", new[] { "PostID" });
             DropIndex("dbo.OrderDetails", new[] { "OrderID" });
             DropIndex("dbo.OrderDetails", new[] { "CourseID" });
+            DropIndex("dbo.CourseTags", new[] { "TagID" });
+            DropIndex("dbo.CourseTags", new[] { "CourseID" });
             DropIndex("dbo.Courses", new[] { "CategoryID" });
             DropTable("dbo.VisitorStatistics");
-            DropTable("dbo.Tags");
             DropTable("dbo.Slides");
+            DropTable("dbo.PostTags");
             DropTable("dbo.Posts");
             DropTable("dbo.PostCategories");
             DropTable("dbo.Orders");
             DropTable("dbo.OrderDetails");
             DropTable("dbo.Lessons");
+            DropTable("dbo.Tags");
+            DropTable("dbo.CourseTags");
             DropTable("dbo.Courses");
             DropTable("dbo.CourseCategories");
         }

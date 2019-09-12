@@ -28,6 +28,8 @@ namespace Learning.Data
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<Slide> Slides { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<CourseTag> CourseTags { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

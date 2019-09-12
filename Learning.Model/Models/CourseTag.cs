@@ -8,24 +8,21 @@ using System.Threading.Tasks;
 
 namespace Learning.Model.Models
 {
-    class CourseTag
-    {
-        [Table("PostTags")]
-        public class PostTag
+        [Table("CourseTags")]
+        public class CourseTag
         {
-            [Key]
+            [Key,Column(Order = 0)]
             public int CourseID { set; get; }
 
-            [Key]
-            [Column(TypeName = "varchar")]
+            [Key,Column(Order = 1)]
             [MaxLength(50)]
             public string TagID { set; get; }
 
-            [ForeignKey("PostID")]
+            [ForeignKey("CourseID")]
             public virtual Course Course  { set; get; }
 
             [ForeignKey("TagID")]
             public virtual Tag Tag { set; get; }
         }
-    }
+    
 }
