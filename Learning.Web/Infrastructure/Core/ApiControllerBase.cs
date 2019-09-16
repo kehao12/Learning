@@ -20,7 +20,7 @@ namespace Learning.Web.Infrastructure.Core
             this._errorService = errorService;
         }
 
-        protected HttpResponseMessage CreateHttpReponse(HttpRequestMessage requestMessage,Func<HttpResponseMessage> function)
+        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage,Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
             try

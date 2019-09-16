@@ -17,6 +17,7 @@ namespace Learning.Service
         IEnumerable<PostCategory> GetAll();
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
         PostCategory GetById(int id);
+        void SaveChanges();
     }
     public class PostCategoryService: IPostCategoryServie
     {
@@ -51,6 +52,11 @@ namespace Learning.Service
         public PostCategory GetById(int id)
         {
             return _postcategoryRepository.GetSingleById(id);
+        }
+
+        public void SaveChanges()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
