@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,10 +72,6 @@
     <ProjectReference Include="..\Learning.Service\Learning.Service.csproj">
       <Project>{292191db-fcd0-455d-b91a-9617fa03ed02}</Project>
       <Name>Learning.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Learning.Web\Learning.Web.csproj">
-      <Project>{df404c40-7e88-477c-9748-8cf774af2e49}</Project>
-      <Name>Learning.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

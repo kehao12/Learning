@@ -12,7 +12,7 @@ namespace Learning.Data.Infrastructure
 
         public LearningDbContext Init()
         {
-            throw new NotImplementedException();
+            return dbContext ?? (dbContext = new LearningDbContext());
         }
 
         protected override void DisposeCore()

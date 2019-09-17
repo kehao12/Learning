@@ -13,7 +13,7 @@ namespace Learning.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909120416266_InitialDB"; }
+            get { return "201909171155427_InitialDB"; }
         }
         
         string IMigrationMetadata.Source

@@ -9,59 +9,67 @@ using System.Threading.Tasks;
 
 namespace Learning.Service
 {
-    public interface IPostCategoryServie
+    public interface IPostCategoryService
     {
-        void Add(PostCategory postCategory);
+        PostCategory Add(PostCategory postCategory);
+
         void Update(PostCategory postCategory);
-        void Delete(int id);
+
+        PostCategory Delete(int id);
+
         IEnumerable<PostCategory> GetAll();
+
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
+
         PostCategory GetById(int id);
-        void SaveChanges();
+
+        void Save();
     }
-    public class PostCategoryService: IPostCategoryServie
+
+    public class PostCategoryService : IPostCategoryService
     {
-        IPostCategoryRepository _postcategoryRepository;
-        IUnitOfWork _unitOfWork;
-        public PostCategoryService(IPostCategoryRepository postcategoryRepository, IUnitOfWork unitOfWork)
+        private IPostCategoryRepository _postCategoryRepository;
+        private IUnitOfWork _unitOfWork;
+
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
-            this._postcategoryRepository = postcategoryRepository;
+            this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(PostCategory postCategory)
+        public PostCategory Add(PostCategory postCategory)
         {
-            _postcategoryRepository.Add(postCategory);
+            return _postCategoryRepository.Add(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategory Delete(int id)
         {
-            _postcategoryRepository.Delete(id);
+            return _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
         {
-            return _postcategoryRepository.GetAll();
+            return _postCategoryRepository.GetAll();
         }
 
         public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
-            return _postcategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
         public PostCategory GetById(int id)
         {
-            return _postcategoryRepository.GetSingleById(id);
+            return _postCategoryRepository.GetSingleById(id);
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
         {
-            _postcategoryRepository.Update(postCategory);
+            _postCategoryRepository.Update(postCategory);
         }
     }
 }

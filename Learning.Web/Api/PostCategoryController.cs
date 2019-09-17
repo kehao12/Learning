@@ -10,18 +10,32 @@ using System.Web.Http;
 
 namespace Learning.Web.Api
 {
-    [RoutePrefix("api/postCategory")]
+    [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryServie _postCategoryService;
-        public PostCategoryController(IErrorService errorService,IPostCategoryServie postCategoryServie): 
+        IPostCategoryService _postCategoryService;
+
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) :
             base(errorService)
         {
-            this._postCategoryService = postCategoryServie;
+            this._postCategoryService = postCategoryService;
         }
 
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listCategory = _postCategoryService.GetAll();
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+
+
+                return response;
+            });
+        }
+
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -32,51 +46,32 @@ namespace Learning.Web.Api
                 }
                 else
                 {
-                    var listCategory = _postCategoryService.GetAll();
+                    var category = _postCategoryService.Add(postCategory);
+                    _postCategoryService.Save();
 
-                    response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, category);
 
                 }
                 return response;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request,PostCategory postCategory)
-        {
-            return CreateHttpResponse(request, () =>
-             {
-                 HttpResponseMessage response = null;
-                 if (!ModelState.IsValid)
-                 {
-                     request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                 }
-                 else
-                 {
-                     _postCategoryService.Add(postCategory);
-                     _postCategoryService.SaveChanges();
-
-                     response = request.CreateResponse(HttpStatusCode.Created,postCategory);
-                 }
-                 return response;
-             });
-        }
-
-
         public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
                     _postCategoryService.Update(postCategory);
-                    _postCategoryService.SaveChanges();
+                    _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
+
                 }
                 return response;
             });
@@ -87,20 +82,20 @@ namespace Learning.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
                     _postCategoryService.Delete(id);
-                    _postCategoryService.SaveChanges();
+                    _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
+
                 }
                 return response;
             });
         }
-
     }
 }

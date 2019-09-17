@@ -17,10 +17,10 @@ namespace Learning.Data.Migrations
                         Description = c.String(),
                         ParentID = c.Int(),
                         DisplayOrder = c.Int(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -37,10 +37,10 @@ namespace Learning.Data.Migrations
                         Image = c.String(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         ViewCount = c.Int(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -71,6 +71,17 @@ namespace Learning.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.Errors",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Message = c.String(),
+                        StackTrace = c.String(),
+                        CreatedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.Lessons",
                 c => new
                     {
@@ -81,10 +92,10 @@ namespace Learning.Data.Migrations
                         Content = c.String(),
                         Video = c.String(),
                         Doccument = c.String(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -113,10 +124,10 @@ namespace Learning.Data.Migrations
                         CustomerEmail = c.String(),
                         CustomerMobile = c.String(),
                         PaymentMethod = c.String(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -132,10 +143,10 @@ namespace Learning.Data.Migrations
                         ParentID = c.Int(),
                         DisplayOrder = c.Int(),
                         Image = c.String(maxLength: 256),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -153,10 +164,10 @@ namespace Learning.Data.Migrations
                         Description = c.String(maxLength: 500),
                         Content = c.String(),
                         ViewCount = c.Int(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
+                        UpdatedBy = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -224,6 +235,7 @@ namespace Learning.Data.Migrations
             DropTable("dbo.Orders");
             DropTable("dbo.OrderDetails");
             DropTable("dbo.Lessons");
+            DropTable("dbo.Errors");
             DropTable("dbo.Tags");
             DropTable("dbo.CourseTags");
             DropTable("dbo.Courses");

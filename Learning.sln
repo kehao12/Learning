@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Service", "Learnin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.UnitTest", "Learning.UnitTest\Learning.UnitTest.csproj", "{7E94BAF5-1E34-4192-9DBB-CC2CBDF95879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Web", "Learning.Web\Learning.Web.csproj", "{DF404C40-7E88-477C-9748-8CF774AF2E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learning.Web", "Learning.Web\Learning.Web.csproj", "{71D62225-EE9F-40DD-9ADA-BA21B7577EBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{7E94BAF5-1E34-4192-9DBB-CC2CBDF95879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E94BAF5-1E34-4192-9DBB-CC2CBDF95879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E94BAF5-1E34-4192-9DBB-CC2CBDF95879}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF404C40-7E88-477C-9748-8CF774AF2E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF404C40-7E88-477C-9748-8CF774AF2E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF404C40-7E88-477C-9748-8CF774AF2E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF404C40-7E88-477C-9748-8CF774AF2E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D62225-EE9F-40DD-9ADA-BA21B7577EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D62225-EE9F-40DD-9ADA-BA21B7577EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D62225-EE9F-40DD-9ADA-BA21B7577EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D62225-EE9F-40DD-9ADA-BA21B7577EBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
