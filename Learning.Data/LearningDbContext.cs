@@ -1,5 +1,6 @@
 ﻿using Learning.Model.Abstract;
 using Learning.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Learning.Data
 {
-    public class LearningDbContext: DbContext
+    public class LearningDbContext: IdentityDbContext<ApplicationUser>
     {
         public LearningDbContext(): base("LearningConnection")
         {
@@ -31,6 +32,11 @@ namespace Learning.Data
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<CourseTag> CourseTags { get; set; }
         public DbSet<Error> Errors { get; set; }
+
+        public static LearningDbContext Create()
+        {
+            return new LearningDbContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
