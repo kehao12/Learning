@@ -18,10 +18,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44307</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -183,6 +183,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,27 +198,168 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="app\app.js" />
+    <Content Include="app\components\courses\courseAddController.js" />
+    <Content Include="app\components\courses\courseAddView.html" />
+    <Content Include="app\components\courses\courseEditController.js" />
+    <Content Include="app\components\courses\courseEditView.html" />
+    <Content Include="app\components\courses\courseListController.js" />
+    <Content Include="app\components\courses\courseListView.html" />
+    <Content Include="app\components\courses\courses.module.js" />
+    <Content Include="app\components\home\homeController.js" />
+    <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\shared\modules\learning.common.js" />
+    <Content Include="Assets\admin\css\style.css" />
+    <Content Include="Assets\admin\css\style.min.css" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-de-merc-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-es-merc-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-fr-merc-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-us-lcc-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Assets\admin\data\vector-maps\custom\mall-map.js" />
+    <Content Include="Assets\admin\data\vector-maps\data\gdp-data.js" />
+    <Content Include="Assets\admin\examples\css\bootstrap-datepicker.css" />
+    <Content Include="Assets\admin\examples\css\bootstrap-datepicker.min.css" />
+    <Content Include="Assets\admin\examples\css\bootstrap-timepicker.css" />
+    <Content Include="Assets\admin\examples\css\bootstrap-timepicker.min.css" />
+    <Content Include="Assets\admin\examples\css\bootstrap-touchspin.css" />
+    <Content Include="Assets\admin\examples\css\bootstrap-touchspin.min.css" />
+    <Content Include="Assets\admin\examples\css\datatables.css" />
+    <Content Include="Assets\admin\examples\css\datatables.min.css" />
+    <Content Include="Assets\admin\examples\css\dropzone.css" />
+    <Content Include="Assets\admin\examples\css\dropzone.min.css" />
+    <Content Include="Assets\admin\examples\css\fancytree.css" />
+    <Content Include="Assets\admin\examples\css\fancytree.min.css" />
+    <Content Include="Assets\admin\examples\css\fullcalendar.css" />
+    <Content Include="Assets\admin\examples\css\fullcalendar.min.css" />
+    <Content Include="Assets\admin\examples\css\jvectormap.css" />
+    <Content Include="Assets\admin\examples\css\jvectormap.min.css" />
+    <Content Include="Assets\admin\examples\css\morris.css" />
+    <Content Include="Assets\admin\examples\css\morris.min.css" />
+    <Content Include="Assets\admin\examples\css\nestable.css" />
+    <Content Include="Assets\admin\examples\css\nestable.min.css" />
+    <Content Include="Assets\admin\examples\css\nouislider.css" />
+    <Content Include="Assets\admin\examples\css\nouislider.min.css" />
+    <Content Include="Assets\admin\examples\css\summernote.css" />
+    <Content Include="Assets\admin\examples\css\summernote.min.css" />
+    <Content Include="Assets\admin\examples\css\sweetalert.css" />
+    <Content Include="Assets\admin\examples\css\sweetalert.min.css" />
+    <Content Include="Assets\admin\examples\js\chart.js" />
+    <Content Include="Assets\admin\examples\js\chart.min.js" />
+    <Content Include="Assets\admin\examples\js\countdown.js" />
+    <Content Include="Assets\admin\examples\js\countdown.min.js" />
+    <Content Include="Assets\admin\examples\js\datatables.js" />
+    <Content Include="Assets\admin\examples\js\datatables.min.js" />
+    <Content Include="Assets\admin\examples\js\date-time.js" />
+    <Content Include="Assets\admin\examples\js\date-time.min.js" />
+    <Content Include="Assets\admin\examples\js\fancytree.js" />
+    <Content Include="Assets\admin\examples\js\fancytree.min.js" />
+    <Content Include="Assets\admin\examples\js\fullcalendar.js" />
+    <Content Include="Assets\admin\examples\js\fullcalendar.min.js" />
+    <Content Include="Assets\admin\examples\js\map-single-marker.js" />
+    <Content Include="Assets\admin\examples\js\map-single-marker.min.js" />
+    <Content Include="Assets\admin\examples\js\map.js" />
+    <Content Include="Assets\admin\examples\js\map.min.js" />
+    <Content Include="Assets\admin\examples\js\nestable.js" />
+    <Content Include="Assets\admin\examples\js\nestable.min.js" />
+    <Content Include="Assets\admin\examples\js\slider.js" />
+    <Content Include="Assets\admin\examples\js\slider.min.js" />
+    <Content Include="Assets\admin\examples\js\summernote.js" />
+    <Content Include="Assets\admin\examples\js\summernote.min.js" />
+    <Content Include="Assets\admin\examples\js\sweetalert.js" />
+    <Content Include="Assets\admin\examples\js\sweetalert.min.js" />
+    <Content Include="Assets\admin\examples\js\touchspin.js" />
+    <Content Include="Assets\admin\examples\js\touchspin.min.js" />
+    <Content Include="Assets\admin\examples\js\vector-maps.js" />
+    <Content Include="Assets\admin\examples\js\vector-maps.min.js" />
+    <Content Include="Assets\admin\images\cover\preview.jpg" />
+    <Content Include="Assets\admin\images\github.png" />
+    <Content Include="Assets\admin\images\gulp.png" />
+    <Content Include="Assets\admin\images\markers\marker.png" />
+    <Content Include="Assets\admin\images\nodejs.png" />
+    <Content Include="Assets\admin\images\people\110\child-1.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-1.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-2.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-3.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-4.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-5.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-6.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-7.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-8.jpg" />
+    <Content Include="Assets\admin\images\people\110\guy-9.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-1.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-10.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-2.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-3.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-4.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-5.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-6.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-7.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-8.jpg" />
+    <Content Include="Assets\admin\images\people\110\woman-9.jpg" />
+    <Content Include="Assets\admin\images\people\50\child-1.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-1.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-2.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-3.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-4.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-5.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-6.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-7.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-8.jpg" />
+    <Content Include="Assets\admin\images\people\50\guy-9.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-1.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-10.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-2.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-3.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-4.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-5.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-6.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-7.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-8.jpg" />
+    <Content Include="Assets\admin\images\people\50\woman-9.jpg" />
+    <Content Include="Assets\admin\images\timeline\food1.jpg" />
+    <Content Include="Assets\admin\images\timeline\place1.jpg" />
+    <Content Include="Assets\admin\images\timeline\place2.jpg" />
+    <Content Include="Assets\admin\images\timeline\place3.jpg" />
+    <Content Include="Assets\admin\images\vuejs.png" />
+    <Content Include="Assets\admin\js\colors.js" />
+    <Content Include="Assets\admin\js\colors.min.js" />
+    <Content Include="Assets\admin\js\main.js" />
+    <Content Include="Assets\admin\js\main.min.js" />
+    <Content Include="Assets\admin\vendor\adminplus.js" />
+    <Content Include="Assets\admin\vendor\bootstrap-datepicker.min.js" />
+    <Content Include="Assets\admin\vendor\bootstrap-timepicker.js" />
+    <Content Include="Assets\admin\vendor\bootstrap.min.js" />
+    <Content Include="Assets\admin\vendor\datatables-bootstrap3.min.js" />
+    <Content Include="Assets\admin\vendor\dropzone.min.css" />
+    <Content Include="Assets\admin\vendor\dropzone.min.js" />
+    <Content Include="Assets\admin\vendor\fullcalendar.min.js" />
+    <Content Include="Assets\admin\vendor\jquery-jvectormap.css" />
+    <Content Include="Assets\admin\vendor\jquery.bootstrap-touchspin.js" />
+    <Content Include="Assets\admin\vendor\jquery.countdown.min.js" />
+    <Content Include="Assets\admin\vendor\jquery.dataTables.min.js" />
+    <Content Include="Assets\admin\vendor\jquery.fancytree-all.min.js" />
+    <Content Include="Assets\admin\vendor\jquery.jvectormap.min.js" />
+    <Content Include="Assets\admin\vendor\jquery.min.js" />
+    <Content Include="Assets\admin\vendor\jquery.nestable.js" />
+    <Content Include="Assets\admin\vendor\moment.min.js" />
+    <Content Include="Assets\admin\vendor\morris.min.js" />
+    <Content Include="Assets\admin\vendor\nouislider.min.css" />
+    <Content Include="Assets\admin\vendor\nouislider.min.js" />
+    <Content Include="Assets\admin\vendor\raphael-min.js" />
+    <Content Include="Assets\admin\vendor\summernote.min.js" />
+    <Content Include="Assets\admin\vendor\sweetalert.min.js" />
+    <Content Include="Assets\admin\vendor\tether.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include=".bin\bower.cmd" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
+    <Content Include="package.json" />
+    <Content Include="Scripts\spa\app.js" />
+    <Content Include="Scripts\spa\test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -226,28 +368,58 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="app\components\course_categories\" />
+    <Folder Include="app\components\orders\" />
+    <Folder Include="app\components\roles\" />
+    <Folder Include="app\components\users\" />
+    <Folder Include="app\shared\footer\" />
+    <Folder Include="app\shared\navigation\" />
+    <Folder Include="app\shared\services\" />
+    <Folder Include="Assets\client\" />
+    <Folder Include="Scripts\plugins\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Assets\admin\css\style.min.css.map" />
+    <Content Include="Assets\admin\data\vector-maps\data\france-elections.json" />
+    <Content Include="Assets\admin\data\vector-maps\data\us-unemployment.json" />
+    <Content Include="Assets\admin\images\markers\marker.psd" />
+    <Content Include="Assets\admin\js\colors.min.js.map" />
+    <Content Include="Assets\admin\js\main.min.js.map" />
+    <Content Include="Assets\admin\examples\css\bootstrap-datepicker.min.css.map" />
+    <Content Include="Assets\admin\examples\css\bootstrap-timepicker.min.css.map" />
+    <Content Include="Assets\admin\examples\css\bootstrap-touchspin.min.css.map" />
+    <Content Include="Assets\admin\examples\css\datatables.min.css.map" />
+    <Content Include="Assets\admin\examples\css\dropzone.min.css.map" />
+    <Content Include="Assets\admin\examples\css\fancytree.min.css.map" />
+    <Content Include="Assets\admin\examples\css\fullcalendar.min.css.map" />
+    <Content Include="Assets\admin\examples\css\jvectormap.min.css.map" />
+    <Content Include="Assets\admin\examples\css\morris.min.css.map" />
+    <Content Include="Assets\admin\examples\css\nestable.min.css.map" />
+    <Content Include="Assets\admin\examples\css\nouislider.min.css.map" />
+    <Content Include="Assets\admin\examples\css\summernote.min.css.map" />
+    <Content Include="Assets\admin\examples\css\sweetalert.min.css.map" />
+    <Content Include="Assets\admin\examples\js\chart.min.js.map" />
+    <Content Include="Assets\admin\examples\js\countdown.min.js.map" />
+    <Content Include="Assets\admin\examples\js\datatables.min.js.map" />
+    <Content Include="Assets\admin\examples\js\date-time.min.js.map" />
+    <Content Include="Assets\admin\examples\js\fancytree.min.js.map" />
+    <Content Include="Assets\admin\examples\js\fullcalendar.min.js.map" />
+    <Content Include="Assets\admin\examples\js\map-single-marker.min.js.map" />
+    <Content Include="Assets\admin\examples\js\map.min.js.map" />
+    <Content Include="Assets\admin\examples\js\nestable.min.js.map" />
+    <Content Include="Assets\admin\examples\js\slider.min.js.map" />
+    <Content Include="Assets\admin\examples\js\summernote.min.js.map" />
+    <Content Include="Assets\admin\examples\js\sweetalert.min.js.map" />
+    <Content Include="Assets\admin\examples\js\touchspin.min.js.map" />
+    <Content Include="Assets\admin\examples\js\vector-maps.min.js.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Learning.Common\Learning.Common.csproj">
