@@ -8,21 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Learning.Data.Repositories
-{                   
-    public interface ICourseCategoryRepository: IRepository<CourseCategory>
+{
+    public interface ICourseCategoryRepository : IRepository<CourseCategory>
     {
-        IEnumerable<CourseCategory> GetByAlias(string alias);
     }
-    public class CourseCategoryRepository : RepositoryBase<CourseCategory>
-    {
-        public CourseCategoryRepository(DbFactory dbFactory)
-            : base(dbFactory)
-        {
 
-        }
-        public IEnumerable<CourseCategory> GetByAlias(string alias)
+    public class CourseCategoryRepository : RepositoryBase<CourseCategory>, ICourseCategoryRepository
+    {
+        public CourseCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-            return this.DbContext.CourseCategories.Where(x => x.Alias == alias);
         }
     }
 }

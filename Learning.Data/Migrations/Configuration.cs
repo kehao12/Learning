@@ -1,9 +1,10 @@
-namespace Learning.Data.Migrations
+﻿namespace Learning.Data.Migrations
 {
     using Learning.Model.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -19,7 +20,7 @@ namespace Learning.Data.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-      
+            CreateProductCategorySample(context);
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new LearningDbContext()));
 
@@ -46,6 +47,23 @@ namespace Learning.Data.Migrations
             var adminUser = manager.FindByEmail("tedu.international@gmail.com");
 
             manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+        }
+
+        private void CreateProductCategorySample(Learning.Data.LearningDbContext context)
+        {
+            if (context.CourseCategories.Count() == 0)
+            {
+                List<CourseCategory> listProductCategory = new List<CourseCategory>()
+            {
+                new CourseCategory() { Name="Điện lạnh",Alias="dien-lanh",Status=true },
+                 new CourseCategory() { Name="Viễn thông",Alias="vien-thong",Status=true },
+                  new CourseCategory() { Name="Đồ gia dụng",Alias="do-gia-dung",Status=true },
+                   new CourseCategory() { Name="Mỹ phẩm",Alias="my-pham",Status=true }
+            };
+                context.CourseCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
+
         }
     }
 }

@@ -14,7 +14,14 @@ namespace Learning.Web.Mappings
         {
             Mapper.CreateMap<Post, PostViewModel>();
             Mapper.CreateMap<PostCategory, PostCategoryViewModel>();
+            Mapper.CreateMap<PostTag, PostTagViewModel>();
+
             Mapper.CreateMap<Tag, TagViewModel>();
+
+            Mapper.CreateMap<Course, CourseViewModel>();
+            Mapper.CreateMap<CourseCategory, CourseCategoryViewModel>();
+            Mapper.CreateMap<CourseTag, CourseTagViewModel>();
+
         }
     }
 }

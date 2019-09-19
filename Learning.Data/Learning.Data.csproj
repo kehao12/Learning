@@ -87,13 +87,13 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="LearningDbContext.cs" />
-    <Compile Include="Migrations\201909171155427_InitialDB.cs" />
-    <Compile Include="Migrations\201909171155427_InitialDB.Designer.cs">
-      <DependentUpon>201909171155427_InitialDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201909171434312_Intergrate-AspnetIdentity.cs" />
     <Compile Include="Migrations\201909171434312_Intergrate-AspnetIdentity.Designer.cs">
       <DependentUpon>201909171434312_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909190813187_InitialDB.cs" />
+    <Compile Include="Migrations\201909190813187_InitialDB.Designer.cs">
+      <DependentUpon>201909190813187_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,11 +118,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909171155427_InitialDB.resx">
-      <DependentUpon>201909171155427_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909171434312_Intergrate-AspnetIdentity.resx">
       <DependentUpon>201909171434312_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909190813187_InitialDB.resx">
+      <DependentUpon>201909190813187_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

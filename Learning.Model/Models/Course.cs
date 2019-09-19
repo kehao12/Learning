@@ -24,8 +24,7 @@ namespace Learning.Model.Models
 
         [Required]
         public int CategoryID { get; set; }
-        [ForeignKey("CategoryID")]
-        public virtual CourseCategory CourseCategory { get; set; }
+       
 
         [Required]
         public string Image { get; set; }
@@ -34,7 +33,11 @@ namespace Learning.Model.Models
 
         public int? ViewCount { get; set; }
 
-        public virtual IEnumerable<Course> Courses { get; set; }
+        [ForeignKey("CategoryID")]
+        public virtual IEnumerable<CourseCategory> CourseCategories { set; get; }
+
+        [ForeignKey("TagID")]
+        public virtual IEnumerable<CourseTag> CourseTags { set; get; }
 
 
 

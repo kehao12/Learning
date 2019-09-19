@@ -176,6 +176,7 @@
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
+    <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -191,6 +192,9 @@
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtenstions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\CourseCategoryViewModel.cs" />
+    <Compile Include="Models\CourseTagViewModel.cs" />
+    <Compile Include="Models\CourseViewModel.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
@@ -206,8 +210,12 @@
     <Content Include="app\components\courses\courseListController.js" />
     <Content Include="app\components\courses\courseListView.html" />
     <Content Include="app\components\courses\courses.module.js" />
+    <Content Include="app\components\course_categories\courseCategory.module.js" />
+    <Content Include="app\components\course_categories\courseCategoryListView.html" />
+    <Content Include="app\components\course_categories\courseCategoryListController.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\services\apiService.js" />
     <Content Include="app\shared\modules\learning.common.js" />
     <Content Include="Assets\admin\css\style.css" />
     <Content Include="Assets\admin\css\style.min.css" />
@@ -371,7 +379,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\course_categories\" />
     <Folder Include="app\components\orders\" />
     <Folder Include="app\components\roles\" />
     <Folder Include="app\components\users\" />

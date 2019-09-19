@@ -1,6 +1,10 @@
 ﻿/// <reference path="../node_modules/angular/angular.js" />
 (function () {
-    angular.module('learning', ['learning.courses','learning.common']).config(config);
+    angular.module('learning',
+        ['learning.courses',
+        'learning.common',
+        'learning.course_categories'])
+        .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

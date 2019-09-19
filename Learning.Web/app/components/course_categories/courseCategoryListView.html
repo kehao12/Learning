@@ -1,0 +1,26 @@
+﻿<ol class="breadcrumb m-b-0">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li class="active">Khoá học</li>
+</ol>
+<div class="card">
+    <div class="card-header">Danh mục khoá học</div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Danh mục</th>
+                <th>Ngày tạo</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in courseCategories">
+                <th scope="row">1</th>
+                <td>{{item.Name}}</td>
+                <td>{{item.CreatedDate}}</td>
+                <td>{{item.Status}}</td>
+            </tr>
+         
+        </tbody>
+    </table>
+</div>

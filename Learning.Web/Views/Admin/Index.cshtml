@@ -99,10 +99,17 @@
         <div class="sidebar-heading">Giảng viên</div>
         <ul class="sidebar-menu">
             <li class="sidebar-menu-item">
+                <a class="sidebar-menu-button" ui-sref="course_categories">
+                    <i class="sidebar-menu-icon material-icons">category</i> Quản lý danh mục khoá học
+                </a>
+            </li>
+
+            <li class="sidebar-menu-item">
                 <a class="sidebar-menu-button" ui-sref="courses">
                     <i class="sidebar-menu-icon material-icons">import_contacts</i> Quản lý khoá học
                 </a>
             </li>
+
             <!-- <li class="sidebar-menu-item">
               <a class="sidebar-menu-button" href="instructor-quizes.html">
                 <i class="sidebar-menu-icon material-icons">help</i> Quiz Manager
@@ -213,25 +220,30 @@
     <!-- App JS -->
     <script src="~/Assets/admin/js/main.min.js"></script>
 
-      <!-- Vendor JS -->
-  <script src="~/Assets/admin/vendor/summernote.min.js"></script>
-  <script src="~/Assets/admin/vendor/bootstrap-datepicker.min.js"></script>
-  <script src="~/Assets/admin/vendor/jquery.nestable.js"></script>
+    <!-- Vendor JS -->
+    <script src="~/Assets/admin/vendor/summernote.min.js"></script>
+    <script src="~/Assets/admin/vendor/bootstrap-datepicker.min.js"></script>
+    <script src="~/Assets/admin/vendor/jquery.nestable.js"></script>
 
-  <!-- Init -->
-  <script src="~/Assets/admin/examples/js/summernote.js"></script>
-  <script src="~/Assets/admin/examples/js/date-time.js"></script>
-  <script src="~/Assets/admin/examples/js/nestable.js"></script>
+    <!-- Init -->
+    <script src="~/Assets/admin/examples/js/summernote.js"></script>
+    <script src="~/Assets/admin/examples/js/date-time.js"></script>
+    <script src="~/Assets/admin/examples/js/nestable.js"></script>
 
     <script src="~/node_modules/angular/angular.js"></script>
     <script src="~/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="~/app/shared/modules/learning.common.js"></script>
     <script src="~/app/app.js"></script>
+
     <script src="~/app/components/courses/courses.module.js"></script>
     <script src="~/app/components/courses/courseAddController.js"></script>
     <script src="~/app/components/courses/courseEditController.js"></script>
     <script src="~/app/components/courses/courseListController.js"></script>
     <script src="~/app/components/home/homeController.js"></script>
+
+    <script src="~/app/components/course_categories/courseCategory.module.js"></script>
+    <script src="~/app/components/course_categories/courseCategoryListController.js"></script>
+    <script src="~/app/services/apiService.js"></script>
 </body>
 
 </html>
