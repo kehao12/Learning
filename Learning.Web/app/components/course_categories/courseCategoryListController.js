@@ -5,11 +5,26 @@
     function courseCategoryListController($scope, apiService) {
         
         $scope.courseCategories = [];
+        $scope.page = 0;
+        $scope.pagesCount = 0;
         $scope.getCourseCategories = getCourseCategories;
 
-        function getCourseCategories() {
-            apiService.get('/api/coursecategory/getall', null, function (result) {
-                $scope.courseCategories = result.data;
+
+        function getCourseCategories(page) {
+            page = page || 0;
+            var config = {
+                params: {
+                    page: page,
+                    pageSize: 20
+                }
+            }
+            apiService.get('/api/coursecategory/getall', config, function (result) {
+
+                $scope.courseCategories = result.data.Items;
+                $scope.page = result.data.Page;
+                $scope.pagesCount = result.data.TotalPages;
+                $scope.totalCount = result.data.TotalCount;
+
               
             }, function () {
                     console.log('Load failed');

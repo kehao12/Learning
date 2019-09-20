@@ -190,6 +190,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtenstions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\CourseCategoryViewModel.cs" />
@@ -216,6 +217,9 @@
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\services\apiService.js" />
+    <Content Include="app\shared\directives\pagerDirective.html" />
+    <Content Include="app\shared\directives\pagerDirective.js" />
+    <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\modules\learning.common.js" />
     <Content Include="Assets\admin\css\style.css" />
     <Content Include="Assets\admin\css\style.min.css" />

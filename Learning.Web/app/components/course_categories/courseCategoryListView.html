@@ -1,26 +1,34 @@
 ﻿<ol class="breadcrumb m-b-0">
     <li><a href="index.html">Trang chủ</a></li>
-    <li class="active">Khoá học</li>
+    <li class="active">Danh mục khoá học</li>
 </ol>
+<h1 class="page-heading h2">Quản lý khoá học</h1>
+
 <div class="card">
-    <div class="card-header">Danh mục khoá học</div>
+
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Danh mục</th>
-                <th>Ngày tạo</th>
-                <th>Trạng thái</th>
+                <th style="width: 5%">#</th>
+                <th style="width:40%">Tên danh mục</th>
+                <th style="width:25%">Ngày tạo</th>
+                <th style="width: 15%">Trạng thái</th>
+                <th style="width: 15%">Thao tác</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in courseCategories">
                 <th scope="row">1</th>
                 <td>{{item.Name}}</td>
-                <td>{{item.CreatedDate}}</td>
-                <td>{{item.Status}}</td>
+                <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                <td><span ng-class="{'label label-pill label-danger':item.Status==false,'label label-pill label-success':item.Status==true}">{{item.Status | statusFilter}}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
+                    <button class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                </td>
             </tr>
-         
+
         </tbody>
     </table>
 </div>
+<pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getCourseCagories(page)"></pager-directive>
