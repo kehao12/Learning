@@ -2,6 +2,7 @@
 using Learning.Model.Models;
 using Learning.Service;
 using Learning.Web.Infrastructure.Core;
+using Learning.Web.Infrastructure.Extensions;
 using Learning.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,46 @@ namespace Learning.Web.Api
         {
             this._courseCategoryService = courseCategoryService;
         }
+
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _courseCategoryService.GetAll();
+
+                var responseData = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _courseCategoryService.GetById(id);
+
+                var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+
+                return response;
+            });
+        }
+
+
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request,string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _courseCategoryService.GetAll();
+                var model = _courseCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
@@ -43,6 +77,64 @@ namespace Learning.Web.Api
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 };
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
+
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, CourseCategoryViewModel courseCategoryVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newCourseCategory = new CourseCategory();
+                    newCourseCategory.UpdateCourseCategory(courseCategoryVM);
+
+                    _courseCategoryService.Add(newCourseCategory);
+                    _courseCategoryService.Save();
+
+                    var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(newCourseCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, CourseCategoryViewModel courseCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbCourseCategory = _courseCategoryService.GetById(courseCategoryVm.ID);
+
+                    dbCourseCategory.UpdateCourseCategory(courseCategoryVm);
+                    dbCourseCategory.UpdatedDate = DateTime.Now;
+
+                    _courseCategoryService.Update(dbCourseCategory);
+                    _courseCategoryService.Save();
+
+                    var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(dbCourseCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
                 return response;
             });
         }

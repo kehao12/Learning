@@ -19,6 +19,7 @@
     <!-- App CSS -->
     <link type="text/css" href="~/Assets/admin/css/style.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.css">
     <!-- Required by summernote -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css">
     <!-- Bootstrap Datepicker -->
@@ -232,9 +233,15 @@
 
     <script src="~/node_modules/angular/angular.js"></script>
     <script src="~/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/node_modules/toastr/toastr.js"></script>
+
     <script src="~/app/shared/modules/learning.common.js"></script>
     <script src="~/app/app.js"></script>
-    <script src="~/app/services/apiService.js"></script>
+
+    <script src="~/app/shared/services/apiService.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
+    <script src="~/app/shared/services/commonService.js"></script>
+
     <script src="~/app/shared/filter/statusFilter.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
 
@@ -246,6 +253,8 @@
 
     <script src="~/app/components/course_categories/courseCategory.module.js"></script>
     <script src="~/app/components/course_categories/courseCategoryListController.js"></script>
+    <script src="~/app/components/course_categories/courseCategoryAddController.js"></script>
+    <script src="~/app/components/course_categories/courseCategoryEditController.js"></script>
 
 </body>
 

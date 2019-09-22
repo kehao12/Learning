@@ -28,6 +28,25 @@ namespace Learning.Web.Infrastructure.Extensions
             postCategory.Status = postCategoryVm.Status;
         }
 
+        public static void UpdateCourseCategory(this CourseCategory courseCategory, CourseCategoryViewModel courseCategoryVm)
+        {
+            courseCategory.ID = courseCategoryVm.ID;
+            courseCategory.Name = courseCategoryVm.Name;
+            courseCategory.Description = courseCategoryVm.Description;
+            courseCategory.Alias = courseCategoryVm.Alias;
+            courseCategory.ParentID = courseCategoryVm.ParentID;
+            courseCategory.DisplayOrder = courseCategoryVm.DisplayOrder;
+            
+
+            courseCategory.CreatedDate = courseCategoryVm.CreatedDate;
+            courseCategory.CreatedBy = courseCategoryVm.CreatedBy;
+            courseCategory.UpdatedDate = courseCategoryVm.UpdatedDate;
+            courseCategory.UpdatedBy = courseCategoryVm.UpdatedBy;
+
+            courseCategory.Status = courseCategoryVm.Status;
+
+        }
+
         public static void UpdatePost(this Post post, PostViewModel postVm)
         {
             post.ID = postVm.ID;
