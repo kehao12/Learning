@@ -66,5 +66,25 @@ namespace Learning.Web.Infrastructure.Extensions
      
             post.Status = postVm.Status;
         }
+
+        public static void UpdateCourse(this Course course, CourseViewModel courseVm)
+        {
+            course.ID = courseVm.ID;
+            course.Name = courseVm.Name;
+            course.Description = courseVm.Description;
+            course.Alias = courseVm.Alias;
+            course.CategoryID = courseVm.CategoryID;
+            course.Price = courseVm.Price;
+            course.Image = courseVm.Image;
+
+            course.ViewCount = courseVm.ViewCount;
+
+            course.CreatedDate = courseVm.CreatedDate;
+            course.CreatedBy = courseVm.CreatedBy;
+            course.UpdatedDate = courseVm.UpdatedDate;
+            course.UpdatedBy = courseVm.UpdatedBy;
+
+            course.Status = courseVm.Status;
+        }
     }
 }

@@ -1,16 +1,21 @@
 ﻿(function (app) {
     app.controller('courseCategoryAddController', courseCategoryAddController);
 
-    courseCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state'];
+    courseCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
 
-    function courseCategoryAddController(apiService, $scope, notificationService, $state) {
+    function courseCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.courseCategory = {
             CreatedDate: new Date(),
             Status: true,
-            Name: "Danh mục 1"
+            Name: ""
         }
         loadParentCategory();
         $scope.AddCourseCategory = AddCourseCategory;
+        $scope.GetSeoTitle = GetSeoTitle;
+
+        function GetSeoTitle() {
+            $scope.courseCategory.Alias = commonService.getSeoTitle($scope.courseCategory.Name);
+        }
 
         function AddCourseCategory() {
             apiService.post('api/coursecategory/create', $scope.courseCategory,

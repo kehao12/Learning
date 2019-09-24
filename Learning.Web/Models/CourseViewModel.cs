@@ -24,6 +24,16 @@ namespace Learning.Web.Models
 
         public int? ViewCount { get; set; }
 
+        public DateTime? CreatedDate { set; get; }
+
+        public string CreatedBy { set; get; }
+
+        public DateTime? UpdatedDate { set; get; }
+
+        public string UpdatedBy { set; get; }
+
+        public bool Status { set; get; }
+
         public virtual CourseCategoryViewModel CourseCategory { set; get; }
 
         public virtual IEnumerable<CourseTagViewModel> CourseTags { set; get; }

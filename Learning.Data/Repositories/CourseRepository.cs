@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace Learning.Data.Repositories
 {
-    public interface ICourseRepository: IRepository<Course>
+    public interface ICourseRepository : IRepository<Course>
     {
-       
     }
-    public class CourseRepository: RepositoryBase<Course>,ICourseRepository
+
+    public class CourseRepository : RepositoryBase<Course>, ICourseRepository
     {
-        public CourseRepository(DbFactory dbFactory) : base(dbFactory)
+        public CourseRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-           
         }
     }
 }

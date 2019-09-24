@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\CourseController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

@@ -14,15 +14,15 @@ using System.Web.Script.Serialization;
 
 namespace Learning.Web.Api
 {
-    [RoutePrefix("api/coursecategory")]
-    public class CourseCategoryController : ApiControllerBase
+    [RoutePrefix("api/course")]
+    public class CourseController : ApiControllerBase
     {
-        ICourseCategoryService _courseCategoryService;
+        ICourseService _courseService;
 
-        public CourseCategoryController(IErrorService errorService, ICourseCategoryService courseCategoryService)
+        public CourseController(IErrorService errorService, ICourseService courseService)
             : base(errorService)
         {
-            this._courseCategoryService = courseCategoryService;
+            this._courseService = courseService;
         }
 
         [Route("getallparents")]
@@ -31,9 +31,9 @@ namespace Learning.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _courseCategoryService.GetAll();
+                var model = _courseService.GetAll();
 
-                var responseData = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
+                var responseData = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
@@ -46,9 +46,9 @@ namespace Learning.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _courseCategoryService.GetById(id);
+                var model = _courseService.GetById(id);
 
-                var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(model);
+                var responseData = Mapper.Map<Course, CourseViewModel>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
 
@@ -58,19 +58,19 @@ namespace Learning.Web.Api
 
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request,string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _courseCategoryService.GetAll(keyword);
+                var model = _courseService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(query);
 
-                var paginationSet = new PaginationSet<CourseCategoryViewModel>()
+                var paginationSet = new PaginationSet<CourseViewModel>()
                 {
                     Items = responseData,
                     Page = page,
@@ -85,7 +85,7 @@ namespace Learning.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, CourseCategoryViewModel courseCategoryVM)
+        public HttpResponseMessage Create(HttpRequestMessage request, CourseViewModel courseVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -96,13 +96,13 @@ namespace Learning.Web.Api
                 }
                 else
                 {
-                    var newCourseCategory = new CourseCategory();
-                    newCourseCategory.UpdateCourseCategory(courseCategoryVM);
+                    var newCourse = new Course();
+                    newCourse.UpdateCourse(courseVM);
 
-                    _courseCategoryService.Add(newCourseCategory);
-                    _courseCategoryService.Save();
+                    _courseService.Add(newCourse);
+                    _courseService.Save();
 
-                    var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(newCourseCategory);
+                    var responseData = Mapper.Map<Course, CourseViewModel>(newCourse);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
 
@@ -124,10 +124,10 @@ namespace Learning.Web.Api
                 }
                 else
                 {
-                    var oldCourseCategory = _courseCategoryService.Delete(id);
-                    _courseCategoryService.Save();
+                    var oldCourse = _courseService.Delete(id);
+                    _courseService.Save();
 
-                    var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(oldCourseCategory);
+                    var responseData = Mapper.Map<Course, CourseViewModel>(oldCourse);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
 
@@ -149,15 +149,15 @@ namespace Learning.Web.Api
                 }
                 else
                 {
-                    var listCourseCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedCourseCategories);
-                    foreach (var item in listCourseCategory)
+                    var listCourse = new JavaScriptSerializer().Deserialize<List<int>>(checkedCourseCategories);
+                    foreach (var item in listCourse)
                     {
-                        _courseCategoryService.Delete(item);
+                        _courseService.Delete(item);
                     }
 
-                    _courseCategoryService.Save();
+                    _courseService.Save();
 
-                    response = request.CreateResponse(HttpStatusCode.OK, listCourseCategory.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listCourse.Count);
                 }
 
                 return response;
@@ -167,7 +167,7 @@ namespace Learning.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, CourseCategoryViewModel courseCategoryVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, CourseViewModel courseVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -178,15 +178,15 @@ namespace Learning.Web.Api
                 }
                 else
                 {
-                    var dbCourseCategory = _courseCategoryService.GetById(courseCategoryVm.ID);
+                    var dbCourse = _courseService.GetById(courseVm.ID);
 
-                    dbCourseCategory.UpdateCourseCategory(courseCategoryVm);
-                    dbCourseCategory.UpdatedDate = DateTime.Now;
+                    dbCourse.UpdateCourse(courseVm);
+                    dbCourse.UpdatedDate = DateTime.Now;
 
-                    _courseCategoryService.Update(dbCourseCategory);
-                    _courseCategoryService.Save();
+                    _courseService.Update(dbCourse);
+                    _courseService.Save();
 
-                    var responseData = Mapper.Map<CourseCategory, CourseCategoryViewModel>(dbCourseCategory);
+                    var responseData = Mapper.Map<Course, CourseViewModel>(dbCourse);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
 

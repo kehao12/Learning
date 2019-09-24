@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('learning.common', ['ui.router'])
+    angular.module('learning.common', ['ui.router','ngBootbox'])
 })();

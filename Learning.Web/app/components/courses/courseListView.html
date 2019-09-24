@@ -3,24 +3,34 @@
     <li class="active">Khoá học</li>
 </ol>
 <h1 class="page-heading h2">Quản lý khoá học</h1>
+<button class="btn btn-success float-right m-b-2" ui-sref="course_add">Thêm mới</button>
 <div class="card-columns">
 
     <div class="card">
         <div class="card-header bg-white">
-            <div class="media">
+            <div class="media"  ng-repeat="item in course">
                 <div class="media-left media-middle">
                     <a ui-sref="course_edit">
                         <img src="Assets/admin/images/gulp.png" alt="Card image cap" width="100" class="img-rounded">
                     </a>
                 </div>
                 <div class="media-body media-middle">
-                    <h4 class="card-title"><a ui-sref="course_edit">Gulp & Slush Workflows</a></h4>
-                    <span class="label label-primary">$300</span> <span class="label label-default">5 đăng ký</span>
+                    <h4 class="card-title"><a ui-sref="course_edit">{{item.Name}}</a></h4>
+                    <span class="label label-primary">VND {{item.Price}}</span> 
+                    <span class="label label-default">5 đăng ký</span>
+                    <span ng-class="{'label label-pill label-danger':item.Status==false,'label label-pill label-success':item.Status==true}">{{item.Status | statusFilter}}</span>
                 </div>
                 <div class="media-right media-middle">
-                    <a ui-sref="course_edit" class="btn btn-white">Sửa</a>
+                    <a ui-sref="course_edit" class="btn btn-success">Sửa</a>
+                </div>
+                <div class="media-right media-middle">
+                    <a ui-sref="course_edit" class="btn btn-danger">Xoá</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span>
+<nav class="center">
+    <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getCourse(page)"></pager-directive>
+</nav>

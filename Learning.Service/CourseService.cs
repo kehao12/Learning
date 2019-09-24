@@ -11,63 +11,78 @@ namespace Learning.Service
 {
     public interface ICourseService
     {
-        void Add(Course Course);
-        void Update(Course Course);
-        void Delete(int id);
-        IEnumerable<Course> GetAll();
-        IEnumerable<Course> GetAllPaging(int page, int pageSize, out int totalRow);
-        Course GetById(int id);
-        IEnumerable<Course> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
-        void SaveChanges();
-    }
-    public class CourseService : ICourseService
+        Course Add(Course Course);
+
+    void Update(Course Course);
+
+    Course Delete(int id);
+
+    IEnumerable<Course> GetAll();
+
+    IEnumerable<Course> GetAll(string keyword);
+
+    IEnumerable<Course> GetAllByParentId(int parentId);
+
+    Course GetById(int id);
+
+    void Save();
+}
+
+public class CourseService : ICourseService
+{
+    private ICourseRepository _CourseRepository;
+    private IUnitOfWork _unitOfWork;
+
+    public CourseService(ICourseRepository CourseRepository, IUnitOfWork unitOfWork)
     {
-        ICourseRepository _courseRepository;
-        IUnitOfWork _unitOfWork;
-        public CourseService(ICourseRepository courseRepository, IUnitOfWork unitOfWork)
-        {
-            this._courseRepository = courseRepository;
-            this._unitOfWork = unitOfWork;
-        }
-        public void Add(Course Course)
-        {
-            _courseRepository.Add(Course);
-        }
-
-        public void Delete(int id)
-        {
-            _courseRepository.Delete(id);
-        }
-
-        public IEnumerable<Course> GetAll()
-        {
-            return _courseRepository.GetAll(new string[] { "CourseCategory" });
-        }
-
-        public IEnumerable<Course> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
-        {
-            //TODO: Sellect all course by tag
-            return _courseRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
-        }
-
-        public IEnumerable<Course> GetAllPaging(int page, int pageSize, out int totalRow)
-        {
-            return _courseRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
-        }
-
-        public Course GetById(int id)
-        {
-            return _courseRepository.GetSingleById(id);
-        }
-
-        public void SaveChanges()
-        {
-            _unitOfWork.Commit();
-        }
-
-        public void Update(Course Course)
-        {
-            _courseRepository.Update(Course);
-        }
+        this._CourseRepository = CourseRepository;
+        this._unitOfWork = unitOfWork;
     }
+
+    public Course Add(Course Course)
+    {
+        return _CourseRepository.Add(Course);
+    }
+
+    public Course Delete(int id)
+    {
+        return _CourseRepository.Delete(id);
+    }
+
+    public IEnumerable<Course> GetAll()
+    {
+        return _CourseRepository.GetAll();
+    }
+
+    public IEnumerable<Course> GetAll(string keyword)
+    {
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            return _CourseRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+        }
+        else
+            return _CourseRepository.GetAll();
+
+    }
+
+    public IEnumerable<Course> GetAllByParentId(int parentId)
+    {
+        return _CourseRepository.GetMulti(x => x.Status && x.CategoryID == parentId);
+    }
+
+    public Course GetById(int id)
+    {
+        return _CourseRepository.GetSingleById(id);
+    }
+
+    public void Save()
+    {
+        _unitOfWork.Commit();
+    }
+
+    public void Update(Course Course)
+    {
+        _CourseRepository.Update(Course);
+    }
+}
 }
