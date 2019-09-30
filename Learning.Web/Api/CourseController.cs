@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace Learning.Web.Api
 {
     [RoutePrefix("api/course")]
+    [Authorize]
     public class CourseController : ApiControllerBase
     {
         ICourseService _courseService;

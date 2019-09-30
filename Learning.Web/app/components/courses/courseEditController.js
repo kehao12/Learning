@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('courseEditController', courseEditController);
-    courseEditController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
+    courseEditController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams', 'commonService'];
 
-    function courseEditController() {
+    function courseEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.course = {
             CreatedDate: new Date(),
             Status: true,
@@ -21,12 +21,20 @@
                 });
         }
         function loadParentCategory() {
-            apiService.get('api/coursecategory/getallparents', null, function (result) {
+            apiService.get('api/course/getallparents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log('Cannot get list parent');
             });
         }
-
+        function loadcourseDetail() {
+            apiService.get('api/course/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.course = result.data;
+                console.log($scope.course);
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+        loadcourseDetail();
     }
 })(angular.module('learning.courses'));

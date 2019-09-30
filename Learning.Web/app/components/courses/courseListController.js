@@ -35,7 +35,7 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 20
+                    pageSize: 3
                 }
             }
             apiService.get('/api/course/getall', config, function (result) {

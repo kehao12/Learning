@@ -8,8 +8,19 @@
             Status: true,
             Name: ""
         }
+        $scope.ckeditorOptions = {
+            language: 'vi',
+        
+        }
+        
         loadParentCategory();
         $scope.AddCourse = AddCourse;
+        $scope.GetSeoTitle = GetSeoTitle;
+
+        function GetSeoTitle() {
+            $scope.course.Alias = commonService.getSeoTitle($scope.course.Name);
+        }
+
 
         function AddCourse() {
             apiService.post('api/course/create', $scope.course,
@@ -17,7 +28,7 @@
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
                     $state.go('courses');
                 }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
+                   
                 });
         }
         function loadParentCategory() {
@@ -26,6 +37,13 @@
             }, function () {
                 console.log('Cannot get list parent');
             });
+        }
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.course.Image = fileUrl;
+            }
+            finder.popup();
         }
         loadParentCategory();
     }
