@@ -22,6 +22,9 @@ namespace Learning.Web.Mappings
             Mapper.CreateMap<CourseCategory, CourseCategoryViewModel>();
             Mapper.CreateMap<CourseTag, CourseTagViewModel>();
 
+            Mapper.CreateMap<Slide, SlideViewModel>();
+
+
         }
     }
 }

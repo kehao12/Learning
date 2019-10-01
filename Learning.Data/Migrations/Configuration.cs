@@ -20,7 +20,7 @@
         {
             //  This method will be called after migrating to the latest version.
 
-            CreateProductCategorySample(context);
+            CreateSlide(context);
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new LearningDbContext()));
 
@@ -64,6 +64,32 @@
                 context.SaveChanges();
             }
 
+        }
+
+        private void CreateSlide(LearningDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> listSlide = new List<Slide>()
+                {
+                    new Slide() {
+                        Name ="Slide 1",
+                        DisplayOrder =1,
+                        Status =true,
+                        Url ="#",
+                        Image ="Assets/client/img/banner/banner1.jpg",
+                       },
+                    new Slide() {
+                        Name ="Slide 2",
+                        DisplayOrder =2,
+                        Status =true,
+                        Url ="#",
+                        Image ="Assets/client/img/banner/banner1.jpg",
+                    },
+                };
+                context.Slides.AddRange(listSlide);
+                context.SaveChanges();
+            }
         }
     }
 }

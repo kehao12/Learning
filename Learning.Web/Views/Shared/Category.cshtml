@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Learning.Web.Models.CourseCategoryViewModel>
+<!-- Categorie Menu & Slider Area Start Here -->
+<div class="main-page-banner pb-50 off-white-bg">
+    <div class="container">
+        <div class="row">
+            <!-- Vertical Menu Start Here -->
+            <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                <div class="vertical-menu mb-all-30">
+                    <nav>
+                        <ul class="vertical-menu-list">
+                            @foreach (var category in Model.Where(x => x.ParentID == null))
+                            {
+                                  var url = "/" + category.Alias + ".cc-" + category.ID + ".html";
+                                var childCategories = Model.Where(x => x.ParentID == category.ID);
+                                <li class="">
+                                    <a href="@url">
+                                        <span><img src="Assets/client/img/vertical-menu/1.png" alt="menu-icon"></span>
+                                        @category.Name @if (childCategories.Count() > 0)
+                                        {
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        }
+                                     
+                                    </a>
+
+                                    @if (childCategories.Count() > 0)
+                                    {
+
+                                        <ul class="ht-dropdown mega-child">
+                                            @foreach (var childCategory in childCategories)
+                                            {
+                                                 var childUrl = "/" + childCategory.Alias + ".cc-" + childCategory.ID + ".html";
+                                                <li>
+                                                    <a href="@childUrl">@childCategory.Name</a>
+
+                                                </li>
+                                            }
+                                        </ul>
+                                        <!-- category submenu end-->
+                                    }
+                                </li>
+                            }
+                            <li>
+                                <a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Ngoại ngữ<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <!-- Vertical Mega-Menu Start -->
+                                <ul class="ht-dropdown megamenu first-megamenu">
+                                    <!-- Single Column Start -->
+                                    <li class="single-megamenu">
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Anh</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Single Column End -->
+                                    <!-- Single Column Start -->
+                                    <li class="single-megamenu">
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Single Column End -->
+                                    <!-- Single Megamenu Image Start -->
+                                    <li class="megamenu-img">
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
+                                    </li>
+                                    <!-- Single Megamenu Image End -->
+                                </ul>
+                                <!-- Vertical Mega-Menu End -->
+                            </li>
+                            <li>
+                                <a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ năng sống<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <!-- Vertical Mega-Menu Start -->
+                                <ul class="ht-dropdown megamenu first-megamenu">
+                                    <!-- Single Column Start -->
+                                    <li class="single-megamenu">
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Anh</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Single Column End -->
+                                    <!-- Single Column Start -->
+                                    <li class="single-megamenu">
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                        <ul>
+                                            <li class="menu-tile">Tiếng Nhật</li>
+                                            <li><a href="shop.html">Cơ bản</a></li>
+                                            <li><a href="shop.html">Nâng cao</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Single Column End -->
+                                    <!-- Single Megamenu Image Start -->
+                                    <li class="megamenu-img">
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
+                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
+                                    </li>
+                                    <!-- Single Megamenu Image End -->
+                                </ul>
+                                <!-- Vertical Mega-Menu End -->
+                            </li>
+                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Hôn nhân gia đình<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Hôn nhân gia đình<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+
+
+
+
+                            <!-- More Categoies End -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Vertical Menu End Here -->
+         
+        </div>
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Categorie Menu & Slider Area End Here -->

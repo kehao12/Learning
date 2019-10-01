@@ -23,7 +23,11 @@ namespace Learning.Service
 
     IEnumerable<Course> GetAllByParentId(int parentId);
 
-    Course GetById(int id);
+        IEnumerable<Course> GetLastest(int top);
+
+        IEnumerable<Course> GetHotCourse(int top);
+
+        Course GetById(int id);
 
     void Save();
 }
@@ -75,7 +79,18 @@ public class CourseService : ICourseService
         return _CourseRepository.GetSingleById(id);
     }
 
-    public void Save()
+        public IEnumerable<Course> GetLastest(int top)
+        {
+            return _CourseRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Course> GetHotCourse(int top)
+        {
+            return _CourseRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+
+        }
+
+        public void Save()
     {
         _unitOfWork.Commit();
     }

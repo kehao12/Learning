@@ -102,6 +102,7 @@
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\SlideRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
