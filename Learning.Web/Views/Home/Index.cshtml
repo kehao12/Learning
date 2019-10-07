@@ -4,930 +4,927 @@
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 
-<!-- Categorie Menu & Slider Area Start Here -->
-<div class="main-page-banner pb-50 off-white-bg">
-    <div class="container">
-        <div class="row">
-            <!-- Vertical Menu Start Here -->
-            <div class="col-xl-3 col-lg-4 d-none d-lg-block">
-                <div class="vertical-menu mb-all-30">
-                    <nav>
-                        <ul class="vertical-menu-list">
-                            @foreach (var category in Model.CourseCategories.Where(x => x.ParentID == null))
-                            {
-                                var url = "/" + category.Alias + ".cc-" + category.ID + ".html";
-                                var childCategories = Model.CourseCategories.Where(x => x.ParentID == category.ID);
-                                <li class="">
-                                    <a href="@url">
-                                        <span><img src="Assets/client/img/vertical-menu/1.png" alt="menu-icon"></span>
-                                        @category.Name @if (childCategories.Count() > 0)
-                                        {
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        }
 
-                                    </a>
-
-                                    @if (childCategories.Count() > 0)
-                                    {
-
-                                        <ul class="ht-dropdown mega-child">
-                                            @foreach (var childCategory in childCategories)
+    
+    <!-- Categorie Menu & Slider Area Start Here -->
+    <div class="main-page-banner pb-50 off-white-bg">
+        <div class="container">
+            <div class="row">
+                <!-- Vertical Menu Start Here -->
+                <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                    <div class="vertical-menu mb-all-30">
+                        <nav>
+                            <ul class="vertical-menu-list">
+                                @foreach (var category in Model.CourseCategories.Where(x => x.ParentID == null))
+                                {
+                                    var url = "/" + category.Alias + "-cc-" + category.ID;
+                                    var childCategories = Model.CourseCategories.Where(x => x.ParentID == category.ID);
+                                    <li class="">
+                                        <a href="@url">
+                                            <span><img src="Assets/client/img/vertical-menu/1.png" alt="menu-icon"></span>
+                                            @category.Name @if (childCategories.Count() > 0)
                                             {
-                                                var childUrl = "/" + childCategory.Alias + ".cc-" + childCategory.ID + ".html";
-                                                <li>
-                                                    <a href="@childUrl">@childCategory.Name</a>
-
-                                                </li>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             }
-                                        </ul>
-                                        <!-- category submenu end-->
-                                    }
-                                </li>
+
+                                        </a>
+
+                                        @if (childCategories.Count() > 0)
+                                        {
+
+                                            <ul class="ht-dropdown mega-child">
+                                                @foreach (var childCategory in childCategories)
+                                                {
+                                                    var childUrl = "/" + childCategory.Alias + ".cc-" + childCategory.ID + ".html";
+                                                    <li>
+                                                        <a href="@childUrl">@childCategory.Name</a>
+
+                                                    </li>
+                                                }
+                                            </ul>
+                                            <!-- category submenu end-->
+                                        }
+                                    </li>
+                                }
+                             
+
+
+
+
+                                <!-- More Categoies End -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Vertical Menu End Here -->
+                <!-- Slider Area Start Here -->
+                <div class="col-xl-9 col-lg-8 slider_box">
+                    <div class="slider-wrapper theme-default">
+                        <!-- Slider Background  Image Start-->
+                        <div id="slider" class="nivoSlider">
+                            @foreach (var slide in Model.Slides)
+                            {
+                                <a href="shop.html"><img src="@slide.Image" data-thumb="@slide.Image" alt="" title="@slide.Name" /></a>
                             }
-                            <li>
-                                <a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Ngoại ngữ<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                <!-- Vertical Mega-Menu Start -->
-                                <ul class="ht-dropdown megamenu first-megamenu">
-                                    <!-- Single Column Start -->
-                                    <li class="single-megamenu">
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Anh</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Column End -->
-                                    <!-- Single Column Start -->
-                                    <li class="single-megamenu">
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Column End -->
-                                    <!-- Single Megamenu Image Start -->
-                                    <li class="megamenu-img">
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
-                                    </li>
-                                    <!-- Single Megamenu Image End -->
-                                </ul>
-                                <!-- Vertical Mega-Menu End -->
-                            </li>
-                            <li>
-                                <a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ năng sống<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                <!-- Vertical Mega-Menu Start -->
-                                <ul class="ht-dropdown megamenu first-megamenu">
-                                    <!-- Single Column Start -->
-                                    <li class="single-megamenu">
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Anh</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Column End -->
-                                    <!-- Single Column Start -->
-                                    <li class="single-megamenu">
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li class="menu-tile">Tiếng Nhật</li>
-                                            <li><a href="shop.html">Cơ bản</a></li>
-                                            <li><a href="shop.html">Nâng cao</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Column End -->
-                                    <!-- Single Megamenu Image Start -->
-                                    <li class="megamenu-img">
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
-                                        <a href="shop.html"><img src="Assets/client/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
-                                    </li>
-                                    <!-- Single Megamenu Image End -->
-                                </ul>
-                                <!-- Vertical Mega-Menu End -->
-                            </li>
-                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Hôn nhân gia đình<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Hôn nhân gia đình<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                            <li><a href="shop.html"><span><img src="Assets/client/img/vertical-menu/3.png" alt="menu-icon"></span>Kỹ doanh khởi nghiệp<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 
-
-
-
-                            <!-- More Categoies End -->
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- Vertical Menu End Here -->
-            <!-- Slider Area Start Here -->
-            <div class="col-xl-9 col-lg-8 slider_box">
-                <div class="slider-wrapper theme-default">
-                    <!-- Slider Background  Image Start-->
-                    <div id="slider" class="nivoSlider">
-                        @foreach (var slide in Model.Slides)
-                        {
-                            <a href="shop.html"><img src="@slide.Image" data-thumb="@slide.Image" alt="" title="@slide.Name" /></a>
-                        }
-
-                    </div>
-                    <!-- Slider Background  Image Start-->
-                </div>
-            </div>
-            <!-- Slider Area End Here -->
-
-        </div>
-        <!-- Row End -->
-    </div>
-    <!-- Container End -->
-</div>
-<!-- Categorie Menu & Slider Area End Here -->
-<!-- Main Header Area End Here -->
-<!-- Hot Deal Products Start Here -->
-<div class="hot-deal-products off-white-bg pb-40 pb-sm-50">
-    <div class="container">
-        <!-- Product Title Start -->
-        <div class="post-title pb-30">
-            <h2>Khoá học phổ biến</h2>
-        </div>
-        <!-- Product Title End -->
-        <!-- Hot Deal Product Activation Start -->
-        <div class="hot-deal-active owl-carousel">
-            @foreach (var course in Model.LastestCourses)
-            {
-                var url = "/" + course.Alias + ".p-" + course.ID + ".html";
-                <!-- Single Product Start -->
-                <div class="single-product">
-                    <!-- Product Image Start -->
-                    <div class="pro-img">
-                        <a href="@url">
-                            <img class="primary-img" src="@course.Image" height="226px" alt="@course.Name">
-                            <img class="secondary-img" src="@course.Image" height="226px" alt="@course.Name">
-                        </a>
-                        <div class="countdown" data-countdown="2020/03/01"></div>
-                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                    </div>
-                    <!-- Product Image End -->
-                    <!-- Product Content Start -->
-                    <div class="pro-content">
-                        <div class="pro-info">
-                            <h4><a href="@url">@course.Name</a></h4>
-                            <p><span class="price">@course.Price</span><del class="prev-price">@course.Price</del></p>
-                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
                         </div>
-                        <div class="pro-actions">
-                            <div class="actions-primary">
-                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                            </div>
-                            <div class="actions-secondary">
+                        <!-- Slider Background  Image Start-->
+                    </div>
+                </div>
+                <!-- Slider Area End Here -->
 
-                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Categorie Menu & Slider Area End Here -->
+    <!-- Main Header Area End Here -->
+    <!-- Hot Deal Products Start Here -->
+    <div class="hot-deal-products off-white-bg pb-40 pb-sm-50">
+        <div class="container">
+            <!-- Product Title Start -->
+            <div class="post-title pb-30">
+                <h2>Khoá học phổ biến</h2>
+            </div>
+            <!-- Product Title End -->
+            <!-- Hot Deal Product Activation Start -->
+            <div class="hot-deal-active owl-carousel">
+                @foreach (var course in Model.LastestCourses)
+                {
+                    var url = "/" + course.Alias + "-p-" + course.ID;
+                    <!-- Single Product Start -->
+                    <div class="single-product">
+                        <!-- Product Image Start -->
+                        <div class="pro-img">
+                            <a href="@url">
+                                <img class="primary-img" src="@course.Image" height="226px" alt="@course.Name">
+                                <img class="secondary-img" src="@course.Image" height="226px" alt="@course.Name">
+                            </a>
+                            <div class="countdown" data-countdown="2020/03/01"></div>
+                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                        </div>
+                        <!-- Product Image End -->
+                        <!-- Product Content Start -->
+                        <div class="pro-content">
+                            <div class="pro-info">
+                                <h4><a href="@url">@course.Name</a></h4>
+                                <p><span class="price">@course.Price</span><del class="prev-price">@course.Price</del></p>
+                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                            </div>
+                            <div class="pro-actions">
+                                <div class="actions-primary">
+                                    <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                </div>
+                                <div class="actions-secondary">
+
+                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Product Content End -->
-                </div>
-            }
-
-        </div>
-        <!-- Hot Deal Product Active End -->
-
-    </div>
-    <!-- Container End -->
-</div>
-<!-- Hot Deal Products End Here -->
-<!-- Hot Deal Products End Here -->
-<!-- Big Banner Start Here -->
-
-<!-- Big Banner End Here -->
-<!-- Arrivals Products Area Start Here -->
-<div class="arrivals-product pb-45 pb-sm-45">
-    <div class="container">
-        <div class="main-product-tab-area">
-            <div class="tab-menu mb-25">
-                <div class="section-ttitle">
-                    <h2>Khoá học</h2>
-                </div>
-                <!-- Nav tabs -->
-                <ul class="nav tabs-area" role="tablist">
-                    @foreach (var courseCategory in Model.CourseCategories)
-                    {
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#@courseCategory.ID">@courseCategory.Name</a>
-                    </li>
-                    }
-                  
-
-                </ul>
-
-            </div>
-
-            <!-- Tab Contetn Start -->
-            <div class="tab-content">
-                @foreach(var categoryCourse in Model.CourseCategories) {
-                       
-              <div id="@categoryCourse.ID" class="tab-pane fade">
-                        <!-- Arrivals Product Activation Start Here -->
-                  <div class="electronics-pro-active owl-carousel">
-
-                      @foreach (var course in Model.Courses.Where(x => x.CategoryID == categoryCourse.ID))
-                      {
-                     
-                      
-
-                          var url = "/" + course.Alias + ".p-" + course.ID + ".html";
-                          <!-- Single Product Start -->
-                          <div class="single-product">
-                              <!-- Product Image Start -->
-                              <div class="pro-img">
-                                  <a href="product.html">
-                                      <img class="primary-img" src="@course.Image" height="240px" alt="single-product">
-                                      <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                  </a>
-                                  <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                              </div>
-                              <!-- Product Image End -->
-                              <!-- Product Content Start -->
-                              <div class="pro-content">
-                                  <div class="pro-info">
-                                      <h4><a href="product.html">Lorem abc</a></h4>
-                                      <p><span class="price">300.000đ</span><del class="prev-price">200.000đ</del></p>
-                                      <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
-                                  </div>
-                                  <div class="pro-actions">
-                                      <div class="actions-primary">
-                                          <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                      </div>
-                                      <div class="actions-secondary">
-
-                                          <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- Product Content End -->
-                              <span class="sticker-new">new</span>
-                          </div>
-                      }
-                          <!-- Single Product End -->
-                          <!-- Double Product End -->
-
-                      </div>
-                        <!-- Arrivals Product Activation End Here -->
+                        <!-- Product Content End -->
                     </div>
                 }
-                <!-- #fshion End Here -->
-                <div id="kids" class="tab-pane fade show active">
-                    <!-- Arrivals Product Activation Start Here -->
-                    <div class="electronics-pro-active owl-carousel">
-                        <!-- Double Product Start -->
-                        <div class="double-product">
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Utensils and Knives Block</a></h4>
-                                        <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                        <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Terra Xpress HE Cooking </a></h4>
-                                        <p><span class="price">84.45</span><del class="prev-price">300.50</del></p>
-                                        <div class="label-product l_sale">25<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                        </div>
-                        <!-- Double Product End -->
-                        <!-- Double Product Start -->
-                        <div class="double-product">
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Robert Welch Knife Block</a></h4>
-                                        <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
-                                        <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                        <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
-                                        <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                        </div>
-                        <!-- Double Product End -->
-                        <!-- Double Product Start -->
-                        <div class="double-product">
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Bark and  Vortex Side</a></h4>
-                                        <p><span class="price">69.20</span><del class="prev-price">145.50</del></p>
-                                        <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Compary and Bark Vortex Shewe</a></h4>
-                                        <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                        <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                        </div>
-                        <!-- Double Product End -->
-                        <!-- Double Product Start -->
-                        <div class="double-product">
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">kallery kids  weare</a></h4>
-                                        <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                        <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <!-- Product Image Start -->
-                                <div class="pro-img">
-                                    <a href="product.html">
-                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
-                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
-                                    </a>
-                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                                </div>
-                                <!-- Product Image End -->
-                                <!-- Product Content Start -->
-                                <div class="pro-content">
-                                    <div class="pro-info">
-                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                        <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                        <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                                    </div>
-                                    <div class="pro-actions">
-                                        <div class="actions-primary">
-                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                        </div>
-                                        <div class="actions-secondary">
-
-                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product Content End -->
-                                <span class="sticker-new">new</span>
-                            </div>
-                            <!-- Single Product End -->
-                        </div>
-                        <!-- Double Product End -->
-                    </div>
-                    <!-- Arrivals Product Activation End Here -->
-                </div>
-                <!-- #fshion End Here -->
-                <!-- #beauty End Here -->
-
 
             </div>
-            <!-- Tab Content End -->
+            <!-- Hot Deal Product Active End -->
+
         </div>
-        <!-- main-product-tab-area-->
+        <!-- Container End -->
     </div>
-    <!-- Container End -->
-</div>
-<!-- Arrivals Products Area End Here -->
-<!-- Arrivals Products Area Start Here -->
-<div class="second-arrivals-product pb-30 pb-sm-5">
-    <div class="container">
-        <div class="main-product-tab-area">
-            <div class="tab-menu mb-25">
-                <div class="section-ttitle">
-                    <h2>Khoá học bán chạy</h2>
-                </div>
-                <!-- Nav tabs -->
-                <ul class="nav tabs-area" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#electronics2">Lập trình </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#beauty2">Ngoại ngữ</a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-
-            <!-- Tab Contetn Start -->
-            <div class="tab-content">
-
-                <div id="beauty2" class="tab-pane fade">
-                    <!-- Arrivals Product Activation Start Here -->
-                    <div class="best-seller-pro-active owl-carousel">
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-
+    <!-- Hot Deal Products End Here -->
+    <!-- Hot Deal Products End Here -->
+    <!-- Big Banner Start Here -->
+    <!-- Big Banner End Here -->
+    <!-- Arrivals Products Area Start Here -->
+    <div class="arrivals-product pb-45 pb-sm-45">
+        <div class="container">
+            <div class="main-product-tab-area">
+                <div class="tab-menu mb-25">
+                    <div class="section-ttitle">
+                        <h2>Khoá học</h2>
                     </div>
-                    <!-- Arrivals Product Activation End Here -->
+                    <!-- Nav tabs -->
+                    <ul class="nav tabs-area" role="tablist">
+                        @foreach (var courseCategory in Model.CourseCategories)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#@courseCategory.ID">@courseCategory.Name</a>
+                            </li>
+                        }
+
+
+                    </ul>
+
                 </div>
-                <!-- #beauty End Here -->
-                <div id="electronics2" class="tab-pane fade show active">
-                    <!-- Arrivals Product Activation Start Here -->
-                    <div class="best-seller-pro-active owl-carousel">
+
+                <!-- Tab Contetn Start -->
+                <div class="tab-content">
+                    @foreach (var categoryCourse in Model.CourseCategories)
+                    {
+
+                        <div id="@categoryCourse.ID" class="tab-pane fade">
+                            <!-- Arrivals Product Activation Start Here -->
+                            <div class="electronics-pro-active owl-carousel">
+
+                                @foreach (var course in Model.Courses.Where(x => x.CategoryID == categoryCourse.ID))
+                                {
+
+
+
+                                    var url = "/" + course.Alias + "-p-" + course.ID;
+                                    <!-- Single Product Start -->
+                                    <div class="single-product">
+                                        <!-- Product Image Start -->
+                                        <div class="pro-img">
+                                            <a href="product.html">
+                                                <img class="primary-img" src="@course.Image" height="240px" alt="single-product">
+                                                <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                            </a>
+                                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                        </div>
+                                        <!-- Product Image End -->
+                                        <!-- Product Content Start -->
+                                        <div class="pro-content">
+                                            <div class="pro-info">
+                                                <h4><a href="product.html">Lorem abc</a></h4>
+                                                <p><span class="price">300.000đ</span><del class="prev-price">200.000đ</del></p>
+                                                <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
+                                            </div>
+                                            <div class="pro-actions">
+                                                <div class="actions-primary">
+                                                    <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                                </div>
+                                                <div class="actions-secondary">
+
+                                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Product Content End -->
+                                        <span class="sticker-new">new</span>
+                                    </div>
+                                }
+                                <!-- Single Product End -->
+                                <!-- Double Product End -->
+
+                            </div>
+                            <!-- Arrivals Product Activation End Here -->
+                        </div>
+                    }
+                    <!-- #fshion End Here -->
+                    <div id="kids" class="tab-pane fade show active">
+                        <!-- Arrivals Product Activation Start Here -->
+                        <div class="electronics-pro-active owl-carousel">
+                            <!-- Double Product Start -->
+                            <div class="double-product">
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Utensils and Knives Block</a></h4>
+                                            <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Terra Xpress HE Cooking </a></h4>
+                                            <p><span class="price">84.45</span><del class="prev-price">300.50</del></p>
+                                            <div class="label-product l_sale">25<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Double Product End -->
+                            <!-- Double Product Start -->
+                            <div class="double-product">
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Robert Welch Knife Block</a></h4>
+                                            <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
+                                            <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                            <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
+                                            <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Double Product End -->
+                            <!-- Double Product Start -->
+                            <div class="double-product">
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Bark and  Vortex Side</a></h4>
+                                            <p><span class="price">69.20</span><del class="prev-price">145.50</del></p>
+                                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Compary and Bark Vortex Shewe</a></h4>
+                                            <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Double Product End -->
+                            <!-- Double Product Start -->
+                            <div class="double-product">
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">kallery kids  weare</a></h4>
+                                            <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-product">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="product.html">
+                                            <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
+                                            <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="240px" alt="single-product">
+                                        </a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <div class="pro-info">
+                                            <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                            <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                            <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                        </div>
+                                        <div class="pro-actions">
+                                            <div class="actions-primary">
+                                                <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                            </div>
+                                            <div class="actions-secondary">
+
+                                                <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Content End -->
+                                    <span class="sticker-new">new</span>
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Double Product End -->
+                        </div>
+                        <!-- Arrivals Product Activation End Here -->
+                    </div>
+                    <!-- #fshion End Here -->
+                    <!-- #beauty End Here -->
+
+
+                </div>
+                <!-- Tab Content End -->
+            </div>
+            <!-- main-product-tab-area-->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Arrivals Products Area End Here -->
+    <!-- Arrivals Products Area Start Here -->
+    <div class="second-arrivals-product pb-30 pb-sm-5">
+        <div class="container">
+            <div class="main-product-tab-area">
+                <div class="tab-menu mb-25">
+                    <div class="section-ttitle">
+                        <h2>Khoá học bán chạy</h2>
+                    </div>
+                    <!-- Nav tabs -->
+                    <ul class="nav tabs-area" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#electronics2">Lập trình </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#beauty2">Ngoại ngữ</a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                <!-- Tab Contetn Start -->
+                <div class="tab-content">
+
+                    <div id="beauty2" class="tab-pane fade">
+                        <!-- Arrivals Product Activation Start Here -->
+                        <div class="best-seller-pro-active owl-carousel">
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+
+                        </div>
+                        <!-- Arrivals Product Activation End Here -->
+                    </div>
+                    <!-- #beauty End Here -->
+                    <div id="electronics2" class="tab-pane fade show active">
+                        <!-- Arrivals Product Activation Start Here -->
+                        <div class="best-seller-pro-active owl-carousel">
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr5.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <!-- Product Image Start -->
+                                <div class="pro-img">
+                                    <a href="product.html">
+                                        <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                        <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    </a>
+                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                </div>
+                                <!-- Product Image End -->
+                                <!-- Product Content Start -->
+                                <div class="pro-content">
+                                    <div class="pro-info">
+                                        <h4><a href="product.html">Country Squire Florist</a></h4>
+                                        <p><span class="price">84.45</span></p>
+                                    </div>
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        </div>
+                                        <div class="actions-secondary">
+
+                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Content End -->
+                            </div>
+                            <!-- Single Product End -->
+
+                        </div>
+                        <!-- Arrivals Product Activation End Here -->
+                    </div>
+                    <!-- #electronics End Here -->
+                </div>
+                <!-- Tab Content End -->
+            </div>
+            <!-- main-product-tab-area-->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Arrivals Products Area End Here -->
+    <!-- Quick View Content End -->
+    <!-- Like Products Area Start Here -->
+    <div class="like-product ptb-45 off-white-bg pt-sm-50 pb-sm-55 ">
+        <div class="container">
+            <div class="like-product-area">
+                <h2 class="section-ttitle2 mb-30">Có thể bạn sẽ thích</h2>
+                <!-- Arrivals Product Activation Start Here -->
+                <div class="like-pro-active owl-carousel">
+                    <!-- Double Product Start -->
+                    <div class="double-product">
                         <!-- Single Product Start -->
                         <div class="single-product">
                             <!-- Product Image Start -->
                             <div class="pro-img">
                                 <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <!-- Single Product Start -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                </a>
-                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                            </div>
-                            <!-- Product Image End -->
-                            <!-- Product Content Start -->
-                            <div class="pro-content">
-                                <div class="pro-info">
-                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                    <p><span class="price">84.45</span></p>
-                                </div>
-                                <div class="pro-actions">
-                                    <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
-                                    </div>
-                                    <div class="actions-secondary">
-
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product Content End -->
-                        </div>
-                        <!-- Single Product End -->
-                        <div class="single-product">
-                            <!-- Product Image Start -->
-                            <div class="pro-img">
-                                <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr5.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" alt="single-product">
+                                    <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
                                 </a>
                                 <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                             </div>
@@ -936,15 +933,16 @@
                             <div class="pro-content">
                                 <div class="pro-info">
                                     <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
-                                    <p><span class="price">84.45</span></p>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
                                 </div>
                                 <div class="pro-actions">
                                     <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
                                     </div>
                                     <div class="actions-secondary">
 
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -956,8 +954,8 @@
                             <!-- Product Image Start -->
                             <div class="pro-img">
                                 <a href="product.html">
-                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
-                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" alt="single-product">
+                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
                                 </a>
                                 <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                             </div>
@@ -966,460 +964,377 @@
                             <div class="pro-content">
                                 <div class="pro-info">
                                     <h4><a href="product.html">Country Squire Florist</a></h4>
-                                    <p><span class="price">84.45</span></p>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
                                 </div>
                                 <div class="pro-actions">
                                     <div class="actions-primary">
-                                        <a href="cart.html" title="Thêm giỏ hàng"> + Thêm giỏ hàng</a>
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
                                     </div>
                                     <div class="actions-secondary">
 
-                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào yêu thích</span></a>
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
                                     </div>
                                 </div>
                             </div>
                             <!-- Product Content End -->
                         </div>
                         <!-- Single Product End -->
-
                     </div>
-                    <!-- Arrivals Product Activation End Here -->
+                    <!-- Double Product End -->
+                    <!-- Double Product Start -->
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Robert Welch Knife Block</a></h4>
+                                    <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
+                                    <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                    <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
+                                    <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    <!-- Double Product End -->
+                    <!-- Double Product Start -->
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Country Squire Florist</a></h4>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    <!-- Double Product End -->
+                    <!-- Double Product Start -->
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Robert Welch Knife Block</a></h4>
+                                    <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
+                                    <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                    <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
+                                    <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    <!-- Double Product End -->
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Country Squire Florist</a></h4>
+                                    <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
+                                    <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    <!-- Double Product End -->
+                    <!-- Double Product Start -->
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Robert Welch Knife Block</a></h4>
+                                    <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
+                                    <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product.html">
+                                    <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                    <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
+                                    <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
+                                    <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                    </div>
+                                    <div class="actions-secondary">
+
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    <!-- Double Product End -->
+
                 </div>
-                <!-- #electronics End Here -->
+                <!-- Arrivals Product Activation End Here -->
             </div>
-            <!-- Tab Content End -->
+            <!-- main-product-tab-area-->
         </div>
-        <!-- main-product-tab-area-->
+        <!-- Container End -->
     </div>
-    <!-- Container End -->
-</div>
-<!-- Arrivals Products Area End Here -->
-<!-- Quick View Content End -->
-<!-- Like Products Area Start Here -->
-<div class="like-product ptb-45 off-white-bg pt-sm-50 pb-sm-55 ">
-    <div class="container">
-        <div class="like-product-area">
-            <h2 class="section-ttitle2 mb-30">Có thể bạn sẽ thích</h2>
-            <!-- Arrivals Product Activation Start Here -->
-            <div class="like-pro-active owl-carousel">
-                <!-- Double Product Start -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Country Squire Florist</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-                <!-- Double Product Start -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Robert Welch Knife Block</a></h4>
-                                <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
-                                <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
-                                <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-                <!-- Double Product Start -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Country Squire Florist</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-                <!-- Double Product Start -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Robert Welch Knife Block</a></h4>
-                                <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
-                                <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
-                                <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr2.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Flos Chasen S2 Suspension</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr3.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Country Squire Florist</a></h4>
-                                <p><span class="price">84.45</span><del class="prev-price">105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-                <!-- Double Product Start -->
-                <div class="double-product">
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr4.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Robert Welch Knife Block</a></h4>
-                                <p><span class="price">100.45</span><del class="prev-price">150.50</del></p>
-                                <div class="label-product l_sale">30<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                                <img class="secondary-img" src="Assets/client/img/products/pr5.jpg" height="224px" alt="single-product">
-                            </a>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                <p><span class="price">90.50</span><del class="prev-price">120.50</del></p>
-                                <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
-                                </div>
-                                <div class="actions-secondary">
-
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào giỏ hàng</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Double Product End -->
-
+    <!-- Lile Products Area End Here -->
+    <!-- Brand Banner Area Start Here -->
+    <!-- Brand Banner Area End Here -->
+    <div class="big-banner pb-40 pb-sm-40 pt-40">
+        <div class="container big-banner-box">
+            <div class="col-img">
+                <a href="#">
+                    <img src="Assets/client/img/banner/banner1.jpg" height="379px;" alt="">
+                </a>
             </div>
-            <!-- Arrivals Product Activation End Here -->
+            <div class="col-img">
+                <a href="#">
+                    <img src="Assets/client/img/banner/2.jpg" alt="">
+                </a>
+            </div>
         </div>
-        <!-- main-product-tab-area-->
+        <!-- Container End -->
     </div>
-    <!-- Container End -->
-</div>
-<!-- Lile Products Area End Here -->
-<!-- Brand Banner Area Start Here -->
-<!-- Brand Banner Area End Here -->
-<div class="big-banner pb-40 pb-sm-40 pt-40">
-    <div class="container big-banner-box">
-        <div class="col-img">
-            <a href="#">
-                <img src="Assets/client/img/banner/banner1.jpg" height="379px;" alt="">
-            </a>
-        </div>
-        <div class="col-img">
-            <a href="#">
-                <img src="Assets/client/img/banner/2.jpg" alt="">
-            </a>
-        </div>
-    </div>
-    <!-- Container End -->
-</div>
+

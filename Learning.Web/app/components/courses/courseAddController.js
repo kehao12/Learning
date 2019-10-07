@@ -45,6 +45,7 @@
             }
             finder.popup();
         }
+     
         loadParentCategory();
     }
 })(angular.module('learning.courses'));

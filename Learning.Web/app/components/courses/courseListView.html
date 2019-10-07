@@ -12,12 +12,12 @@
                 <div class="card-header bg-white">
                     <div class="media">
                         <div class="media-left media-middle">
-                            <a ui-sref="course_edit">
-                                <img src="Assets/admin/images/gulp.png" alt="Card image cap" width="100" class="img-rounded">
+                            <a ui-sref="course_edit({id:item.ID})">
+                                <img src="{{item.Image}}" alt="Card image cap" width="100" class="img-rounded">
                             </a>
                         </div>
                         <div class="media-body media-middle">
-                            <h4 class="card-title"><a ui-sref="course_edit">{{item.Name}}</a></h4>
+                            <h4 class="card-title"><a ui-sref="course_edit({id:item.ID})">{{item.Name}}</a></h4>
                             <span class="label label-primary">VND {{item.Price}}</span>
                             <span class="label label-default">5 đăng ký</span>
                             <span ng-class="{'label label-pill label-danger':item.Status==false,'label label-pill label-success':item.Status==true}">{{item.Status | statusFilter}}</span>
@@ -27,7 +27,7 @@
 
                         </div>
                         <div class="media-right media-middle">
-                            <a class="btn btn-danger">Xoá</a>
+                            <button class="btn  btn-danger" ng-click="deleteCourse(item.ID,item.Name)"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
                 </div>

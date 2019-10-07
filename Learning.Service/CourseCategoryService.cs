@@ -19,6 +19,8 @@ namespace Learning.Service
 
         IEnumerable<CourseCategory> GetAll();
 
+        IEnumerable<CourseCategory> GetAllNotIDParent();
+
         IEnumerable<CourseCategory> GetAll(string keyword);
 
         IEnumerable<CourseCategory> GetAllByParentId(int parentId);
@@ -68,6 +70,11 @@ namespace Learning.Service
         public IEnumerable<CourseCategory> GetAllByParentId(int parentId)
         {
             return _CourseCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+        }
+
+        public IEnumerable<CourseCategory> GetAllNotIDParent()
+        {
+            return _CourseCategoryRepository.GetMulti(x => x.ParentID==null);
         }
 
         public CourseCategory GetById(int id)

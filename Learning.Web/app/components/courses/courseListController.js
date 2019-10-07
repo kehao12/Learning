@@ -9,19 +9,19 @@
         $scope.keyword = '';
         $scope.getCourse = getCourse;
 
-        $scope.deleteCourseCategory = deleteCourseCategory;
+        $scope.deleteCourse = deleteCourse;
 
 
-        function deleteCourseCategory(id, name) {
+        function deleteCourse(id, name) {
             $ngBootbox.confirm('Bạn có chắc muốn xoá " ' + name + ' " ').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('api/coursecategory/delete', config, function () {
+                apiService.del('api/course/delete', config, function () {
                     notificationService.displaySuccess('Xoá thành công' + name);
-                    $scope.getCourseCategories();
+                    $scope.getCourse();
                 })
 
             }, function () {
@@ -35,7 +35,7 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 3
+                    pageSize: 4
                 }
             }
             apiService.get('/api/course/getall', config, function (result) {

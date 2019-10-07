@@ -8,6 +8,10 @@
             Status: true,
        
         }
+        $scope.ckeditorOptions = {
+            language: 'vi',
+
+        }
         loadParentCategory();
         $scope.UpdateCourse = UpdateCourse;
 
@@ -35,6 +39,15 @@
                 notificationService.displayError(error.data);
             });
         }
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.course.Image = fileUrl;
+            }
+            finder.popup();
+        }
+
         loadcourseDetail();
     }
 })(angular.module('learning.courses'));

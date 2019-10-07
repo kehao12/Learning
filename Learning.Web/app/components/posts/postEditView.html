@@ -1,0 +1,94 @@
+﻿  <!-- Content Header (Page header) -->
+<ol class="breadcrumb m-b-0">
+    <li><a ui_sref="index">Trang chủ</a></li>
+    <li><a ui-sref="product_categories">bài viết</a></li>
+    <li class="active">Thêm mới bài viết</li>
+
+</ol>
+
+<h1 class="page-heading h2">Thêm bài viết</h1>
+<!-- Main content -->
+<div class="card">
+    <div class="card-block">
+        <!-- Horizontal Form -->
+        <!-- form start -->
+        <form novalidate name="frmEditpost" role="form" ng-submit="Updatepost()">
+            <div class="box-body">
+
+                <div class="form-group row">
+                    <label for="exampleInputFile" class="col-sm-2 control-label">Hình ảnh</label>
+                    <div class="col-sm-2">
+                        <input type="hidden" class="form-control" id="exampleInputFile" required name="Image" ng-model="post.Image">
+                        <button class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+
+
+                    </div>
+                    <div class="col-sm-8">
+
+                        <img src="{{post.Image}}" style="width:400px; height:250px;" alt="Alternate Text" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên bài viết</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-change="GetSeoTitle()" required name="name" ng-model="post.Name">
+                        <span ng-show="frmAddpost.name.$error.maxlength && frmAddpost.name.$dirty" class="has-danger">Phải nhập tên danh mục</span>
+                        <span ng-show="frmAddpost.name.$error.maxlength && frmAddpost.name.$dirty" class="has-danger">Tên danh mục chỉ được 256 ký tự</span>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="alias" required ng-model="post.Alias">
+                        <span ng-show="frmAddpost.alias.$invalid && frmAddpost.alias.$dirty" class="has-danger">Phải nhập tiêu đề SEO</span>
+                        <span ng-show="frmAddpost.alias.$error.maxlength" class="has-danger">Tiêu đề SEO chỉ được 256 ký tự</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exampleTextarea" class="col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="exampleTextarea" ckeditor="ckeditorOptions" rows="3" name="description" ng-model="post.Description"></textarea>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục bài viết</label>
+                    <div class="col-sm-10">
+                        <select name="parentId" class="form-control" required ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in parentCategories">
+                            <option value="">Danh mục gốc</option>
+                        </select>
+                        <input type="hidden" name="parentId" ng-model="post.CategoryID" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Đơn giá</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" required name="displayOrder" ng-model="post.Price">
+                        <span ng-show="frmAddpost.Price.$invalid && frmAddpost.Price.$dirty" class="has-error">Phải nhập đơn giá</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="post.Status" ng-checked="post.Status"> Kích hoạt
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="post_categories" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddpost.$invalid" class="btn btn-success pull-right">Lưu</button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div>
+</div>

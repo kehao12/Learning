@@ -12,15 +12,26 @@ namespace Learning.Service
 {
     public interface IPostService
     {
-        void Add(Post post);
-        void Update(Post post);
-        void Delete(int id);
+
+        Post Add(Post Post);
+
+        void Update(Post Post);
+
+        Post Delete(int id);
+
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
-        IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
+
+        IEnumerable<Post> GetAll(string keyword);
+
+        IEnumerable<Post> GetAllByParentId(int parentId);
+
+        IEnumerable<Post> GetLastest(int top);
+
+        IEnumerable<Post> GetHotPost(int top);
+
         Post GetById(int id);
-        IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
-        void SaveChanges();
+
+        void Save();
     }
     public class PostService : IPostService
     {
@@ -31,35 +42,35 @@ namespace Learning.Service
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
         }
-        public void Add(Post post)
+        public Post Add(Post Post)
         {
-            _postRepository.Add(post);
+            return _postRepository.Add(Post);
         }
 
-        public void Delete(int id)
+        public Post Delete(int id)
         {
-            _postRepository.Delete(id);
+            return _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
         {
-            return _postRepository.GetAll(new string[] { "PostCategory" });
+            return _postRepository.GetAll();
         }
 
-        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Post> GetAll(string keyword)
         {
-            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _postRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            }
+            else
+                return _postRepository.GetAll();
+
         }
 
-        public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
+        public IEnumerable<Post> GetAllByParentId(int parentId)
         {
-            //TODO: Sellect all post by tag
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
-        }
-
-        public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
-        {
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            return _postRepository.GetMulti(x => x.Status && x.CategoryID == parentId);
         }
 
         public Post GetById(int id)
@@ -67,14 +78,25 @@ namespace Learning.Service
             return _postRepository.GetSingleById(id);
         }
 
-        public void SaveChanges()
+        public IEnumerable<Post> GetLastest(int top)
+        {
+            return _postRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Post> GetHotPost(int top)
+        {
+            return _postRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+
+        }
+
+        public void Save()
         {
             _unitOfWork.Commit();
         }
 
-        public void Update(Post post)
+        public void Update(Post Post)
         {
-            _postRepository.Update(post);
+            _postRepository.Update(Post);
         }
     }
 }

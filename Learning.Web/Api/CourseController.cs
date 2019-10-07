@@ -59,6 +59,7 @@ namespace Learning.Web.Api
 
 
         [Route("getall")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -85,7 +86,6 @@ namespace Learning.Web.Api
 
         [Route("create")]
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, CourseViewModel courseVM)
         {
             return CreateHttpResponse(request, () =>
@@ -113,7 +113,6 @@ namespace Learning.Web.Api
 
         [Route("delete")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -138,7 +137,7 @@ namespace Learning.Web.Api
 
         [Route("deletemulti")]
         [HttpDelete]
-        [AllowAnonymous]
+
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedCourseCategories)
         {
             return CreateHttpResponse(request, () =>
@@ -167,7 +166,7 @@ namespace Learning.Web.Api
 
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
+
         public HttpResponseMessage Update(HttpRequestMessage request, CourseViewModel courseVm)
         {
             return CreateHttpResponse(request, () =>

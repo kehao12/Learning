@@ -17,8 +17,16 @@
 
                 <div class="form-group row">
                     <label for="exampleInputFile" class="col-sm-2 control-label">Hình ảnh</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="exampleInputFile" required name="Image" ng-model="course.Image">
+                    <div class="col-sm-2">
+                        <input type="hidden" class="form-control" id="exampleInputFile" required name="Image" ng-model="course.Image">
+                        <button class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+
+
+                    </div>
+                    <div class="col-sm-8">
+
+                        <img src="{{course.Image}}"  style="width:400px; height:250px;" alt="Alternate Text" />
+                        
                     </div>
                 </div>
 
@@ -42,7 +50,7 @@
                 <div class="form-group row">
                     <label for="exampleTextarea" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="exampleTextarea" rows="3" name="description" ng-model="course.Description"></textarea>
+                        <textarea class="form-control" id="exampleTextarea" ckeditor="ckeditorOptions" rows="3" name="description" ng-model="course.Description"></textarea>
                     </div>
                 </div>
 
@@ -75,6 +83,7 @@
 
                     </div>
                 </div>
+
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button ui-sref="course_categories" class="btn btn-default">Hủy</button>

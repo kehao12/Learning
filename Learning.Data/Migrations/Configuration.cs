@@ -28,8 +28,8 @@
 
             var user = new ApplicationUser()
             {
-                UserName = "tedu",
-                Email = "tedu.international@gmail.com",
+                UserName = "admin",
+                Email = "admin.international@gmail.com",
                 EmailConfirmed = true,
                 BirthDay = DateTime.Now,
                 FullName = "Technology Education"
@@ -44,7 +44,7 @@
                 roleManager.Create(new IdentityRole { Name = "User" });
             }
 
-            var adminUser = manager.FindByEmail("tedu.international@gmail.com");
+            var adminUser = manager.FindByEmail("admin.international@gmail.com");
 
             manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }

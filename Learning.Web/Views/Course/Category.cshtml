@@ -1,0 +1,536 @@
+﻿@model Learning.Web.Infrastructure.Core.PaginationSet<Learning.Web.Models.CourseViewModel>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+    var category = (Learning.Web.Models.CourseCategoryViewModel)ViewBag.Category;
+    var listCourseCategory = ViewBag.listCourseCategoryViewModel;
+    var listCourseCategoryChild = ViewBag.listCourseCategory;
+}
+
+<!-- Categorie Menu & Slider Area Start Here -->
+<div class="main-page-banner home-3">
+    <div class="container">
+        <div class="row">
+            <!-- Vertical Menu Start Here -->
+            <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                <div class="vertical-menu mb-all-30">
+                    <nav>
+                        <ul class="vertical-menu-list">
+                            <li class="">
+                                <a href="shop.html"><span><img src="img/vertical-menu/1.png" alt="menu-icon"></span>Lập trình<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                <ul class="ht-dropdown mega-child">
+
+
+                                    <li><a href="shop.html">C+</a></li>
+                                    <li><a href="shop.html">C#</a></li>
+                                </ul>
+                                <!-- category submenu end-->
+                            </li>
+                            <li class="">
+                                <a href="shop.html"><span><img src="img/vertical-menu/1.png" alt="menu-icon"></span>Ngoại ngữ<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                <ul class="ht-dropdown mega-child">
+
+
+                                    <li><a href="shop.html">Tiếng Anh</a></li>
+                                    <li><a href="shop.html">Tiếng Nhật</a></li>
+                                </ul>
+                                <!-- category submenu end-->
+                            </li>
+                            <li class="">
+                                <a href="shop.html"><span><img src="img/vertical-menu/1.png" alt="menu-icon"></span>Kỹ năng sống<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                <ul class="ht-dropdown mega-child">
+
+
+                                    <li><a href="shop.html">Học đàn</a></li>
+                                    <li><a href="shop.html">Học hát</a></li>
+                                </ul>
+                                <!-- category submenu end-->
+                            </li>
+
+                            <!-- More Categoies End -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Vertical Menu End Here -->
+        </div>
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Categorie Menu & Slider Area End Here -->
+
+<div class="breadcrumb-area mt-30">
+    <div class="container">
+        <div class="breadcrumb">
+            <ul class="d-flex align-items-center">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="active"><a href="course.html">Khoá học</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Page Start -->
+<div class="main-shop-page pt-50 pb-100 ptb-sm-60">
+    <div class="container">
+        <!-- Row End -->
+        <div class="row">
+            <!-- Sidebar Shopping Option Start -->
+            <div class="col-lg-3 order-2 order-lg-1">
+                <div class="sidebar">
+                    <!-- Sidebar Electronics Categorie Start -->
+                    <div class="electronics mb-40">
+                        <h3 class="sidebar-title">Khoá học</h3>
+                        <div id="shop-cate-toggle" class="category-menu sidebar-menu sidbar-style">
+                            <ul>
+                                @foreach (var cate in listCourseCategory)
+                                {
+                                    var url = "/" + category.Alias + "-cc-" + category.ID;
+                                <li class="has-sub">
+                                    <a href="#">@cate.Name</a>
+                                   
+                                    <ul class="category-sub">
+                                        @foreach (var child in listCourseCategoryChild)
+                                        {
+                                        <div>
+                                            @if (child.ParentID == cate.ID)
+                                            {
+                                                <li><a href="shop.html">C#</a></li>
+
+                                            }
+                                        </div>
+                                            }
+                                    
+                                    </ul>
+                                    <!-- category submenu end-->
+                                </li>
+                                }
+                                
+
+                            </ul>
+                        </div>
+                        <!-- category-menu-end -->
+                    </div>
+                    <!-- Sidebar Electronics Categorie End -->
+                    <!-- Price Filter Options Start -->
+                    <div class="search-filter mb-40">
+                        <h3 class="sidebar-title">Tìm theo giá</h3>
+                        <form action="#" class="sidbar-style">
+                            <div id="slider-range"></div>
+                            <input type="text" id="amount" class="amount-range" readonly>
+                        </form>
+                    </div>
+                    <!-- Price Filter Options End -->
+                    <!-- Sidebar Categorie Start -->
+                  
+                    <!-- Sidebar Categorie Start -->
+                
+                    <!-- Product Top Start -->
+                    <div class="top-new mb-40">
+                        <h3 class="sidebar-title">Khoá học mới nhất</h3>
+                        <div class="side-course-active owl-carousel">
+                            <!-- Side Item Start -->
+                            <div class="side-pro-item">
+                                <!-- Single Product Start -->
+                                <div class="single-product single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/pr2.jpg" height="103px" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/pr2.jpg" height="103px" alt="single-course">
+                                        </a>
+                                        <div class="label-course l_sale">30<span class="symbol-percent">%</span></div>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Work Lamp Silver Proin</a></h4>
+                                        <p><span class="price">13045</span><del class="prev-price">180.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+
+                            </div>
+                            <!-- Side Item End -->
+                            <!-- Side Item Start -->
+                            <div class="side-pro-item">
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/41.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/42.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Silver Work Lamp  Proin</a></h4>
+                                        <p><span class="price">80.45</span><del class="prev-price">100.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/36.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/35.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Silver Work Lamp  Proin</a></h4>
+                                        <p><span class="price">320.45</span><del class="prev-price">400.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/33.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/34.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Lamp Proin Work  Silver </a></h4>
+                                        <p><span class="price">120.45</span><del class="prev-price">130.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/31.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/32.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Work Lamp Silver Proin</a></h4>
+                                        <p><span class="price">140.45</span><del class="prev-price">150.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Side Item End -->
+                            <!-- Side Item Start -->
+                            <div class="side-pro-item">
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/15.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/16.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Lamp Work Silver Proin</a></h4>
+                                        <p><span class="price">320.45</span><del class="prev-price">400.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/17.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/18.jpg" alt="single-course">
+                                        </a>
+                                        <div class="label-course l_sale">30<span class="symbol-percent">%</span></div>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Silver Work Lamp  Proin</a></h4>
+                                        <p><span class="price">320.45</span><del class="prev-price">400.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/23.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/24.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Proin Work Lamp Silver </a></h4>
+                                        <p><span class="price">320.45</span><del class="prev-price">400.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                                <!-- Single Product Start -->
+                                <div class="single-course single-product-sidebar">
+                                    <!-- Product Image Start -->
+                                    <div class="pro-img">
+                                        <a href="course.html">
+                                            <img class="primary-img" src="img/courses/25.jpg" alt="single-course">
+                                            <img class="secondary-img" src="img/courses/26.jpg" alt="single-course">
+                                        </a>
+                                    </div>
+                                    <!-- Product Image End -->
+                                    <!-- Product Content Start -->
+                                    <div class="pro-content">
+                                        <h4><a href="course.html">Work Lamp Silver Proin</a></h4>
+                                        <p><span class="price">320.45</span><del class="prev-price">400.50</del></p>
+                                    </div>
+                                    <!-- Product Content End -->
+                                </div>
+                                <!-- Single Product End -->
+                            </div>
+                            <!-- Side Item End -->
+                        </div>
+                    </div>
+                    <!-- Product Top End -->
+                    <!-- Single Banner Start -->
+                    <div class="col-img">
+                        <a href=""><img src="img/banner/2.jpg" alt="slider-banner"></a>
+                    </div>
+                    <!-- Single Banner End -->
+                </div>
+            </div>
+            <!-- Sidebar Shopping Option End -->
+            <!-- Product Categorie List Start -->
+            <div class="col-lg-9 order-1 order-lg-2">
+                <!-- Grid & List View Start -->
+                <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
+                    <div class="grid-list-view  mb-sm-15">
+                        <ul class="nav tabs-area d-flex align-items-center">
+                            <li><a class="active" data-toggle="tab" href="#grid-view"><i class="fa fa-th"></i></a></li>
+                            <li><a data-toggle="tab" href="#list-view"><i class="fa fa-list-ul"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- Toolbar Short Area Start -->
+                    <div class="main-toolbar-sorter clearfix">
+                        <div class="toolbar-sorter d-flex align-items-center">
+                            <label>Lọc theo:</label>
+                            <select class="sorter wide">
+                                <option value="Position">Tên</option>
+                                <option value="Product Name">Từ, A đến Z</option>
+                                <option value="Product Name">Từ, Z đến A</option>
+                                <option value="Price">Giá cao đến thấp</option>
+                                <option value="Price" selected>Giá thấp đến cao</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Toolbar Short Area End -->
+                    <!-- Toolbar Short Area Start -->
+                    <div class="main-toolbar-sorter clearfix">
+                        <div class="toolbar-sorter d-flex align-items-center">
+                            <label>Hiển thị:</label>
+                            <select class="sorter wide">
+                                <option value="12">12</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="75">75</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Toolbar Short Area End -->
+                </div>
+                <!-- Grid & List View End -->
+                <div class="main-categorie mb-all-40">
+                    <!-- Grid & List Main Area End -->
+                    <div class="tab-content fix">
+                        <div id="grid-view" class="tab-pane fade show active">
+
+                            @if (Model.Count > 0)
+                            {
+                                <div class="row">
+
+
+                                    @foreach (var course in Model.Items)
+                                    {
+                                        var url = "/" + course.Alias + "-c-" + course.ID;
+                                        <!-- Single Product Start -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                            <div class="single-product">
+                                                <!-- Product Image Start -->
+                                                <div class="pro-img">
+                                                    <a href="@url">
+                                                        <img class="primary-img" src="@course.Image" height="268px" alt="@course.Name">
+                                                        <img class="secondary-img" src="@course.Image" height="268px" alt="@course.Name">
+                                                    </a>
+                                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                                </div>
+                                                <!-- Product Image End -->
+                                                <!-- Product Content Start -->
+                                                <div class="pro-content">
+                                                    <div class="pro-info">
+                                                        <h4><a href="@url">@course.Name</a></h4>
+                                                        <p><span class="price">@course.Price</span>
+                                                     
+                                                    </div>
+                                                    <div class="pro-actions">
+                                                        <div class="actions-primary">
+                                                            <a href="cart.html" title="Add to Cart">Thêm giỏ hàng</a>
+                                                        </div>
+                                                        <div class="actions-secondary">
+
+                                                            <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào danh sách yêu thích</span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Product Content End -->
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    }
+
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center">Không có khoá học nào được tìm thấy.</div>
+                            }
+                            <!-- Row End -->
+                        </div>
+                        <!-- #grid view End -->
+                        <div id="list-view" class="tab-pane fade">
+                            @if (Model.Count > 0)
+                            {
+                                <div>
+
+                                @foreach (var course in Model.Items)
+                                {
+                                    var url = "/" + course.Alias + "-c-" + course.ID;
+
+                                    <!-- Single Product Start -->
+
+                                    <div class="single-product">
+                                        <div class="row">
+                                            <!-- Product Image Start -->
+                                            <div class="col-lg-4 col-md-5 col-sm-12">
+                                                <div class="pro-img">
+                                                    <a href="@url">
+                                                        <img class="primary-img" src="@course.Image" height="270px" alt="@course.Name">
+                                                        <img class="secondary-img" src="@course.Image" height="270px" alt="@course.Name">
+                                                    </a>
+                                                    <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                                                    <span class="sticker-new">new</span>
+                                                </div>
+                                            </div>
+                                            <!-- Product Image End -->
+                                            <!-- Product Content Start -->
+                                            <div class="col-lg-8 col-md-7 col-sm-12">
+                                                <div class="pro-content hot-product2">
+                                                    <h4><a href="@url">@course.Name</a></h4>
+                                                    <p><span class="price">@course.Price</span></p>
+                                                    @course.Description
+                                                    <div class="pro-actions">
+                                                        <div class="actions-primary">
+                                                            <a href="cart.html" title="" data-original-title="Add to Cart">Thêm giỏ hàng</a>
+                                                        </div>
+                                                        <div class="actions-secondary">
+
+                                                            <a href="wishlist.html" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào danh sách yêu thích</span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Product Content End -->
+                                        </div>
+                                    </div>
+                                    <!-- Single Product End -->
+                                }
+                                </div>
+                            }
+                                </div>
+                        <!-- #list view End -->
+                        @if (Model.TotalPages > 1)
+                        {
+                            // Create numeric links
+                            var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                            var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+                            <div class="pro-pagination">
+
+                                <ul class="blog-pagination">
+                                    @if (Model.Page > 1)
+                                    {
+                                        <li>
+                                            <a href="?page=@(Model.Page - 1)" aria-label="Previous">
+                                                <i class="fa fa-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (Model.Page == i)
+                                        {
+                                            <li class="active"><a href="?page=@i" title="Trang @i">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="?page=@i" title="Trang @i">@i</a></li>
+                                        }
+                                    }
+                                    @if (Model.Page < Model.TotalPages)
+                                    {
+                                        <li>
+                                            <a href="?page=@(Model.Page + 1)" aria-label="Next">
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="?page=@Model.TotalPages" aria-label="Last">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                                    <div class="course-pagination">
+                                        <span class="grid-item-list">Hiển thị 1 đến 12 trên 51 (5 Trang)</span>
+                                    </div>
+                                </div>
+                        }
+                                <!-- Product Pagination Info -->
+                            </div>
+                        
+
+                    <!-- Grid & List Main Area End -->
+                </div>
+                
+            </div>
+            <!-- course Categorie List End -->
+        </div>
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Shop Page End -->

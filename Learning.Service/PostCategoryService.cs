@@ -11,13 +11,15 @@ namespace Learning.Service
 {
     public interface IPostCategoryService
     {
-        PostCategory Add(PostCategory postCategory);
+        PostCategory Add(PostCategory PostCategory);
 
-        void Update(PostCategory postCategory);
+        void Update(PostCategory PostCategory);
 
         PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
+
+        IEnumerable<PostCategory> GetAll(string keyword);
 
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
@@ -28,38 +30,49 @@ namespace Learning.Service
 
     public class PostCategoryService : IPostCategoryService
     {
-        private IPostCategoryRepository _postCategoryRepository;
+        private IPostCategoryRepository _PostCategoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRepository PostCategoryRepository, IUnitOfWork unitOfWork)
         {
-            this._postCategoryRepository = postCategoryRepository;
+            this._PostCategoryRepository = PostCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public PostCategory Add(PostCategory postCategory)
+        public PostCategory Add(PostCategory PostCategory)
         {
-            return _postCategoryRepository.Add(postCategory);
+            return _PostCategoryRepository.Add(PostCategory);
         }
 
         public PostCategory Delete(int id)
         {
-            return _postCategoryRepository.Delete(id);
+            return _PostCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
         {
-            return _postCategoryRepository.GetAll();
+            return _PostCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<PostCategory> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _PostCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            }
+            else
+                return _PostCategoryRepository.GetAll();
+
         }
 
         public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
-            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+            return _PostCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
         public PostCategory GetById(int id)
         {
-            return _postCategoryRepository.GetSingleById(id);
+            return _PostCategoryRepository.GetSingleById(id);
         }
 
         public void Save()
@@ -67,9 +80,9 @@ namespace Learning.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(PostCategory postCategory)
+        public void Update(PostCategory PostCategory)
         {
-            _postCategoryRepository.Update(postCategory);
+            _PostCategoryRepository.Update(PostCategory);
         }
     }
 }

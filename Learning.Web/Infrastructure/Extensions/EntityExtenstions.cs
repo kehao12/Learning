@@ -9,7 +9,7 @@ namespace Learning.Web.Infrastructure.Extensions
 {
     public static class EntityExtenstions
     {
-        public static void UpdatePostCategory(this PostCategory postCategory,PostCategoryViewModel postCategoryVm)
+        public static void UpdatepostCategory(this PostCategory postCategory,PostCategoryViewModel postCategoryVm)
         {
             postCategory.ID = postCategoryVm.ID;
             postCategory.Name = postCategoryVm.Name;

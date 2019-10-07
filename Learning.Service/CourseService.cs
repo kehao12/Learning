@@ -27,6 +27,8 @@ namespace Learning.Service
 
         IEnumerable<Course> GetHotCourse(int top);
 
+        IEnumerable<Course> GetListCourseByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
+
         Course GetById(int id);
 
     void Save();
@@ -99,5 +101,14 @@ public class CourseService : ICourseService
     {
         _CourseRepository.Update(Course);
     }
-}
+
+        public IEnumerable<Course> GetListCourseByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            var query = _CourseRepository.GetMulti(x => x.Status && x.CategoryID == categoryId);
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+    }
 }

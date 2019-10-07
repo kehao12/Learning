@@ -1,0 +1,42 @@
+﻿
+
+<ol class="breadcrumb m-b-0">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li class="active">bài viết</li>
+</ol>
+<h1 class="page-heading h2">Quản lý bài viết</h1>
+<button class="btn btn-success float-right m-b-2" ui-sref="post_add">Thêm mới</button>
+<div class="card-columns">
+
+    <div class="card" ng-repeat="item in post">
+        <div class="card-header bg-white">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a ui-sref="post_edit({id:item.ID})">
+                        <img src="{{item.Image}}" alt="Card image cap" width="100" class="img-rounded">
+                    </a>
+                </div>
+                <div class="media-body media-middle">
+                    <h4 class="card-title"><a ui-sref="post_edit({id:item.ID})">{{item.Name}}</a></h4>
+                    <span class="label label-default">{{item.CreatedDate}}</span>
+                    <span class="label label-default">{{item.ViewCount}}</span>
+                    <span ng-class="{'label label-pill label-danger':item.Status==false,'label label-pill label-success':item.Status==true}">{{item.Status | statusFilter}}</span>
+                </div>
+                <div class="media-right media-middle">
+                    <button ui-sref="post_edit({id:item.ID})" class="btn btn-success">Sửa</button>
+
+                </div>
+                <div class="media-right media-middle">
+                    <button class="btn  btn-danger" ng-click="deletepost(item.ID,item.Name)"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span>
+<nav class="center">
+    <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getpost(page)"></pager-directive>
+</nav>
+

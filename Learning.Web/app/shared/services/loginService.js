@@ -4,17 +4,20 @@
         function ($http, $q, authenticationService, authData) {
             var userInfo;
             var deferred;
+            var username 
+           
 
             this.login = function (userName, password) {
                 deferred = $q.defer();
                 var data = "grant_type=password&username=" + userName + "&password=" + password;
+                username = userName;
                 $http.post('/oauth/token', data, {
                     headers:
                         { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }).success(function (response) {
                     userInfo = {
                         accessToken: response.access_token,
-                        userName: userName
+                        userName: username
                     };
                     authenticationService.setTokenInfo(userInfo);
                     authData.authenticationData.IsAuthenticated = true;

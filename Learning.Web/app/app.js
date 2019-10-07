@@ -2,8 +2,12 @@
 (function () {
     angular.module('learning',
         ['learning.courses',
-        'learning.common',
-        'learning.course_categories'])
+            'learning.common',
+            'learning.post_categories',
+            'learning.course_categories',
+            'learning.posts'
+            
+        ])
         .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

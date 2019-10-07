@@ -1,0 +1,61 @@
+﻿<ol class="breadcrumb m-b-0">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li class="active">Danh mục bài viết</li>
+
+</ol>
+<h1 class="page-heading h2">Quản lý danh mục bài viết</h1>
+
+
+<div class="row mb-6">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="search()">Tìm kiếm</button>
+            </span>
+        </div><!-- /input-group -->
+    </div>
+    <div class="col-md-6 float-right">
+        <button class="btn btn-success float-right" ui-sref="post_category_add">Thêm mới</button>
+        <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
+    </div>
+</div>
+
+
+<div class="card">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td><input name="all" type="checkbox" ng-click="selectAll()" /></td>
+                <th style="width: 5%">#</th>
+                <th style="width:40%">Tên danh mục</th>
+                <th style="width:25%">Ngày tạo</th>
+                <th style="width: 15%">Trạng thái</th>
+                <th style="width: 15%">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in postCategories">
+                <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                <td scope="row">{{$index+1}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                <td><span ng-class="{'label label-pill label-danger':item.Status==false,'label label-pill label-success':item.Status==true}">{{item.Status | statusFilter}}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-primary" ui-sref="post_category_edit({id:item.ID})"><i class="fa fa-pencil"></i></button>
+                    <button class="btn  btn-sm btn-danger" ng-click="deletepostCategory(item.ID,item.Name)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<nav class="center">
+    <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getpostCategories(page)"></pager-directive>
+</nav>

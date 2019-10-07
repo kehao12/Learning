@@ -69,6 +69,7 @@
             }, function (error) {
                     //console.log(error.status)
                     if (error.status === 401) {
+                        
                         notificationService.displayError('Bạn không đủ quyền truy cập.');
                         var stateService = $injector.get('$state');
                         stateService.go('login');

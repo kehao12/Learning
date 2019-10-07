@@ -183,6 +183,7 @@
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\CourseCategoryController.cs" />
+    <Compile Include="Api\PostController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -190,8 +191,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +237,24 @@
     <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\login\loginController.js" />
     <Content Include="app\components\login\loginView.html" />
+    <Content Include="app\components\posts\post.module.js" />
+    <Content Include="app\components\posts\postAddController.js" />
+    <Content Include="app\components\posts\postAddView.html" />
+    <Content Include="app\components\posts\postEditController.js" />
+    <Content Include="app\components\posts\postEditView.html" />
+    <Content Include="app\components\posts\postListController.js" />
+    <Content Include="app\components\posts\postListView.html" />
+    <Content Include="app\components\post_categories\postCategory.module.js" />
+    <Content Include="app\components\post_categories\postCategoryAddView.html" />
+    <Content Include="app\components\post_categories\postCategoryAddController.js" />
+    <Content Include="app\components\post_categories\postCategoryEditView.html" />
+    <Content Include="app\components\post_categories\postCategoryEditController.js" />
+    <Content Include="app\components\post_categories\postCategoryListController.js" />
+    <Content Include="app\components\post_categories\postCategoryListView.html" />
+    <Content Include="app\components\slide\slide.module.js" />
+    <Content Include="app\components\slide\slideAddController.js" />
+    <Content Include="app\components\slide\slideListController.js" />
+    <Content Include="app\components\slide\slideListView.html" />
     <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
@@ -566,7 +590,11 @@
     <Content Include="Views\Shared\Layouts.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Category.cshtml" />
+    <Content Include="Views\Shared\LayoutPage.cshtml" />
+    <Content Include="Views\Shared\ScriptFooter.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Course\Category.cshtml" />
+    <Content Include="Views\Shared\CategoryPages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\orders\" />
@@ -576,6 +604,10 @@
     <Folder Include="app\shared\navigation\" />
     <Folder Include="Scripts\plugins\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Post\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
