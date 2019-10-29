@@ -12,7 +12,7 @@
     "toastr": "2.1.4",
     "bootbox": "4.4.0",
     "ngbootbox": "0.2.0",
-    "ckeditor": "4.5.9",
+    "ckeditor": "4.12.1",
     "ng-ckeditor": "2.0.2",
     "angular-ckeditor": "0.3.1",
     "angular-local-storage": "0.2.7",
